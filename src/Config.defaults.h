@@ -378,16 +378,16 @@
 #define AXIS1_POWER_DOWN               OFF
 #endif
 #ifndef AXIS1_ENABLE_STATE
-#define AXIS1_ENABLE_STATE             LOW
+#define AXIS1_ENABLE_STATE             HIGH
 #endif
 #ifndef AXIS1_SLEW_RATE_DESIRED
-#define AXIS1_SLEW_RATE_DESIRED        5.0                         // in degrees/sec
+#define AXIS1_SLEW_RATE_DESIRED        2.0                         // in degrees/sec
 #endif
 #ifndef AXIS1_ACCELERATION_TIME
-#define AXIS1_ACCELERATION_TIME        5                           // in seconds, to selected rate
+#define AXIS1_ACCELERATION_TIME        0.1                         // in seconds, to selected rate
 #endif
 #ifndef AXIS1_RAPID_STOP_TIME
-#define AXIS1_RAPID_STOP_TIME          3                           // in seconds, to stop
+#define AXIS1_RAPID_STOP_TIME          0.1                         // in seconds, to stop
 #endif
 #ifndef AXIS1_BACKLASH_RATE
 #define AXIS1_BACKLASH_RATE            (AXIS1_SLEW_RATE_DESIRED/4) // in degrees/sec

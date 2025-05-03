@@ -21,7 +21,7 @@
 #define HOST_NAME                   "OCS" //  "OCS", This devices name up to 16 chars.                                        Adjust
 
 // PINMAP --------------------------------------------------------------------------------------------------------------------------
-#define PINMAP                        OFF //    OFF, Choose from: LEGACY, OCS1, OCS2, OCS3, OCS4, OCS_ESP1, OCS_ESP2.        <-Req'd
+#define PINMAP                       OCS4 //    OFF, Choose from: LEGACY, OCS1, OCS2, OCS3, OCS4, OCS_ESP1, OCS_ESP2.        <-Req'd
                                           //         Other boards/more info. in /src/Constants.h
 
 // SERIAL PORT COMMAND CHANNELS ----------------------------------------------------------------------------------------------------
@@ -37,7 +37,7 @@
 #define CAMERA_WEBPAGE                 "" //     "", To enable add string with web address to camera image display page.      Adjust
 
 // WATCHDOG SETTINGS ---------------------------------------------------------------------------------------------------------------
-#define WATCHDOG                      OFF //    OFF, ON resets OCS after 8 sec. if it hangs for (nearly) any reason.          Option
+#define WATCHDOG                       ON //    OFF, ON resets OCS after 8 sec. if it hangs for (nearly) any reason.          Option
 
 // NETWORK SETTINGS ----------------------------------------------------------------------------------------------------------------
 #define ASCOM_ALPACA_SERVER           OFF //    OFF, ON enables ASCOM Alpaca server on port 10000, requires W5500 Ethernet.   Option
@@ -51,16 +51,16 @@
 #define TIME_LOCATION_SOURCE          NTP //    NTP, Network Time Protocol w/IP address settings below, or DS3231 (I2C),      Adjust
                                           //         SD3031 (I2C), DS3234 (SPI), TEENSY.
 #define TIME_NTP_IP         {129,6,15,28} // ...6,15,28}, time-a-g.nist.gov at 129,6,15,28 or 129,6,15,29, 129,6,15,30, etc.  Option
-#define TIME_ZONE                      -5 //     -5, Time Zone (US Eastern Standard Time in this case.)                      <-Req'd
+#define TIME_ZONE                       0 //     -5, Time Zone (US Eastern Standard Time in this case.)                      <-Req'd
 #define TIME_DISPLAY                  STD //    STD, Display Standard Time, UT1 to display Universal Time.                    Adjust
 
 // STATUS PANEL FEATURES -----------------------------------------------------------------------------------------------------------
-#define STAT                          OFF //    OFF, ON to enable the OCS website status panel display.                       Option
+#define STAT                           ON //    OFF, ON to enable the OCS website status panel display.                       Option
 
-#define STAT_MAINS_SENSE              OFF //    OFF, n. Where n=1..8 (Sense#) mains power good, OFF (power failure) is UNSAFE Option
+#define STAT_MAINS_SENSE              OFF // was 8   OFF, n. Where n=1..8 (Sense#) mains power good, OFF (power failure) is UNSAFE Option
 #define STAT_MAINS_CURRENT_ANALOG     OFF //    OFF, n. Where n=1..16 (Analog#) measure/display current mains.                Option
 #define STAT_MAINS_AUX_CURRENT_ANALOG OFF //    OFF, n. Where n=1..16 (Analog#) measure/display current mains (aux.)          Option
-#define STAT_MAINS_SAFETY_DELAY       OFF //    OFF, n. Where n=1..600 (s). Mains safety sense delay time.                    Option
+#define STAT_MAINS_SAFETY_DELAY       300 //    OFF, n. Where n=1..600 (s). Mains safety sense delay time.                    Option
 
 // Converts the analog measure (range 0 to 1.0) to Amps
 #define STAT_MAINS_ANALOG_TO_CURRENT(x) (x*NAN)
@@ -81,19 +81,19 @@
 #define STAT_PROCESSOR_RAM            OFF //    OFF, ON for display of Processor free RAM resources. Mega2560 only.           Option
 
 // POWER PANEL ---------------------------------------------------------------------------------------------------------------------
-#define POWER                         OFF //    OFF, ON to enable the OCS website power panel display.                        Option
+#define POWER                          ON //    OFF, ON to enable the OCS website power panel display.                        Option
 
-#define POWER_DEVICE1_RELAY           OFF //    OFF, n. Where n=1..18 (Relay#) with _NAME below.                              Option
+#define POWER_DEVICE1_RELAY            10 //    OFF, n. Where n=1..18 (Relay#) with _NAME below.                              Option
 #define POWER_DEVICE1_MEMORY          OFF //    OFF, ON to enable memory (across power cycles) for this relay state.          Option
-#define POWER_DEVICE1_NAME ""
+#define POWER_DEVICE1_NAME       "HEATER"
 
-#define POWER_DEVICE2_RELAY           OFF //    OFF, n. Where n=1..18 (Relay#) with _NAME below.                              Option
+#define POWER_DEVICE2_RELAY            12 //    OFF, n. Where n=1..18 (Relay#) with _NAME below.                              Option
 #define POWER_DEVICE2_MEMORY          OFF //    OFF, ON to enable memory (across power cycles) for this relay state.          Option
-#define POWER_DEVICE2_NAME ""
+#define POWER_DEVICE2_NAME "DEHUMIDIFIER"
 
-#define POWER_DEVICE3_RELAY           OFF //    OFF, n. Where n=1..18 (Relay#) with _NAME below.                              Option
+#define POWER_DEVICE3_RELAY             8 //    OFF, n. Where n=1..18 (Relay#) with _NAME below.                              Option
 #define POWER_DEVICE3_MEMORY          OFF //    OFF, ON to enable memory (across power cycles) for this relay state.          Option
-#define POWER_DEVICE3_NAME ""
+#define POWER_DEVICE3_NAME  "FLATS_PANEL"
 
 #define POWER_DEVICE4_RELAY           OFF //    OFF, n. Where n=1..18 (Relay#) with _NAME below.                              Option
 #define POWER_DEVICE4_MEMORY          OFF //    OFF, ON to enable memory (across power cycles) for this relay state.          Option
@@ -128,23 +128,23 @@
 // Weather and Sky Conditions web page charts use "Chart.js" http://www.chartjs.org/. Specifically, version 2.5 of "Chart.min.js"
 //   renamed to "Chart.js" and placed in the Micro SD card root directory (Fat32 formatted) and inserted into the W5100 Ethernet
 //   adapter.  Downloaded from here https://github.com/chartjs/Chart.js/releases/tag/v2.5.0 (page bottom for download links.)
-#define WEATHER                       OFF //    OFF, ON to enable the OCS website weather panel display.                      Option
-#define WEATHER_CHARTS                OFF //    OFF, ON for logging and display of weather data graphic charts.               Option
+#define WEATHER                        ON //    OFF, ON to enable the OCS website weather panel display.                      Option
+#define WEATHER_CHARTS                 ON //    OFF, ON for logging and display of weather data graphic charts.               Option
 
-#define WEATHER_TEMPERATURE           OFF //    OFF, ON for measuring outside temperature.                                    Option
+#define WEATHER_TEMPERATURE            ON //    OFF, ON for measuring outside temperature.                                    Option
 
-#define WEATHER_PRESSURE              OFF //    OFF, ON for measuring barometric pressure.                                    Option
+#define WEATHER_PRESSURE               ON //    OFF, ON for measuring barometric pressure.                                    Option
 #define WEATHER_NOMINAL_PRESSURE     1010 //   1010, n. Where n=500..1050 (in mb) site nominal pressure for Chart.            Adjust
-#define WEATHER_ALTITUDE              100 //    100, n. Where n=-86..5000 (meters) site altitude.                             Adjust
+#define WEATHER_ALTITUDE               25 //    100, n. Where n=-86..5000 (meters) site altitude.                             Adjust
 
-#define WEATHER_HUMIDITY              OFF //    OFF, ON for measuring outside humidity.                                       Option
+#define WEATHER_HUMIDITY               ON //    OFF, ON for measuring outside humidity.                                       Option
 
-#define WEATHER_WIND_SPD              OFF //    OFF, ON for measuring wind speed.                                             Option
+#define WEATHER_WIND_SPD               ON //    OFF, ON for measuring wind speed.                                             Option
 #define WEATHER_WIND_SPD_THRESHOLD     20 //     20, n. Where n=0..100 (in kph) wind speed above this is considered UNSAFE.   Adjust
 
 #define WEATHER_RAIN                  OFF //    OFF, ON to enable rain sensor, a "wet" condition is considered to be UNSAFE.  Option
 
-#define WEATHER_CLOUD_CVR             OFF //    OFF, ON to enable the cloud sensor, above WEATHER_SAFE_THRESHOLD is UNSAFE.   Option
+#define WEATHER_CLOUD_CVR              ON //    OFF, ON to enable the cloud sensor, above WEATHER_SAFE_THRESHOLD is UNSAFE.   Option
 #define WEATHER_SAFE_THRESHOLD        -14 //    -14, n. Where n=-25..0 (in Deg. C)                                            Adjust
 #define WEATHER_VCLR_THRESHOLD        -19 //    -19, n. Where n=-25..0 (in Deg. C)                                            Adjust
 #define WEATHER_CLER_THRESHOLD        -17 //    -17, n. Where n=-25..0 (in Deg. C)                                            Adjust
@@ -156,7 +156,7 @@
 #define WEATHER_SKY_QUAL              OFF //    OFF, ON for measuring sky quality (darkness in magnitudes per sq arc-sec.)    Option
 
 // WEATHER SENSORS ----------------------
-#define WEATHER_SENSOR_TPH_BME280     OFF //    OFF, 0x76 or 0x77 (I2C Address) to enable. Temperature, pressure, humidity.   Option
+#define WEATHER_SENSOR_TPH_BME280    0x77 //    OFF, 0x76 or 0x77 (I2C Address) to enable. Temperature, pressure, humidity.   Option
 
 #define WEATHER_SENSOR_TP_BMP280      OFF //    OFF, 0x76 or 0x77 (I2C Address) to enable. Temperature, pressure.             Option
 
@@ -172,11 +172,11 @@
 // Conversion factor, analog range 0 to 1.0 (x) to Deg. C; example TMP36 device 0.1V (-40°C) to 2.0V (150°C) w/3.3V MCU
 #define WEATHER_SENSOR_T_ANALOG2DEGC(x) (((x*3.3)-0.1)*100.0-40.0)
 
-#define WEATHER_SENSOR_WIND_CUP       OFF //    OFF, n. Where n=1..8 (Sense#) to enable. Wind speed, cup anemometer.          Option
+#define WEATHER_SENSOR_WIND_CUP         4 //    OFF, n. Where n=1..8 (Sense#) to enable. Wind speed, cup anemometer.          Option
 // Conversion factor, pulses per minute (x) to wind speed in KPH
-#define WEATHER_SENSOR_WIND_CUP2KPH(x) (x*0.087)
+#define WEATHER_SENSOR_WIND_CUP2KPH(x) (x*0.16)
 #define WEATHER_SENSOR_WIND_EDGE  FALLING //    RISING or FALLING. Pulse edge to detect.                                      Adjust
-#define WEATHER_SENSOR_WIND_CUP_DB    OFF //    OFF, n. Where n=1..100 (ms) Wind Cup input debounce time.                     Option
+#define WEATHER_SENSOR_WIND_CUP_DB     50 //    OFF, n. Where n=1..100 (ms) Wind Cup input debounce time.                     Option
 
 #define WEATHER_SENSOR_WIND_REV_P     OFF //    OFF, n. Where n=1..16 (Analog#) to enable. Wind speed.                        Option
 
@@ -186,22 +186,22 @@
 
 #define WEATHER_SENSOR_RAIN_DIGITAL   OFF //    OFF, n. Where n=1..8 (Sense#) to enable.  e.g. Kemo M152K or Hydreon RG-9     Option
 
-#define WEATHER_SENSOR_CLOUD_MLX90614 OFF //    OFF, 0x5A (I2C Address) to enable. Gets IR sky IR temp. for cloud detection.  Adjust
+#define WEATHER_SENSOR_CLOUD_MLX90614 0x5A //    OFF, 0x5A (I2C Address) to enable. Gets IR sky IR temp. for cloud detection.  Adjust
 
 #define WEATHER_SENSOR_SKYQ_TSL2591   OFF //    OFF, 0x28 (I2C Address) to enable. Sky brightness for sky quality estimate.   Option
 
 // THERMOSTAT PANEL ----------------------------------------------------------------------------------------------------------------
-#define THERMOSTAT                    OFF //    OFF, ON to enable the OCS website thermostat panel display.                   Option
-#define THERMOSTAT_HUMIDITY           OFF //    OFF, ON displays indoor humidity.                                             Option
-#define HEAT_RELAY                    OFF //    OFF, n. Where n=1..18 (Relay#) for indoor heat.                               Option
+#define THERMOSTAT                     ON //    OFF, ON to enable the OCS website thermostat panel display.                   Option
+#define THERMOSTAT_HUMIDITY            ON //    OFF, ON displays indoor humidity.                                             Option
+#define HEAT_RELAY                     10 //    OFF, n. Where n=1..18 (Relay#) for indoor heat.                               Option
 #define HEAT_WITH_ROOF_OPEN           OFF //    OFF, ON Heat control whilst roof is open.                                     Option
 #define COOL_RELAY                    OFF //    OFF, n. Where n=1..18 (Relay#) for cooling/venting.                           Option
 #define COOL_WITH_ROOF_OPEN           OFF //    OFF, ON Cool control whilst roof is open.                                     Option
-#define HUMIDITY_RELAY                OFF //    OFF, n. Where n=1..18 (Relay#) for dehumidifying.                             Option
+#define HUMIDITY_RELAY                 12 //    OFF, n. Where n=1..18 (Relay#) for dehumidifying.                             Option
 #define HUMIDITY_WITH_ROOF_OPEN       OFF //    OFF, ON Dehumidify control whilst roof is open.                               Option
 
 // THERMOSTAT SENSORS -------------------
-#define THERMOSTAT_SENSOR_TPH_BME280  OFF //    OFF, 0x76 or 0x77 (I2C Address) to enable. Temperature, pressure, humidity.   Option
+#define THERMOSTAT_SENSOR_TPH_BME280 0x76 //    OFF, 0x76 or 0x77 (I2C Address) to enable. Temperature, pressure, humidity.   Option
 
 #define THERMOSTAT_SENSOR_TP_BMP280   OFF //    OFF, 0x76 or 0x77 (I2C Address) to enable. Temperature, pressure.             Option
 
@@ -218,20 +218,20 @@
 #define THERMOSTAT_SENSOR_T_ANALOG2DEGC(x) (((x*3.3)-0.1)*100.0-40.0)
 
 // ROOF/SHUTTER CONTROL PANEL ------------------------------------------------------------------------------------------------------
-#define ROOF                          OFF //    OFF, ON to enable the OCS website roof/dome shutter panel display.            Option
-#define ROOF_USER_SAFETY_OVERRIDE     OFF //    OFF, ON displays safety override button.                                      Option
+#define ROOF                           ON //    OFF, ON to enable the OCS website roof/dome shutter panel display.            Option
+#define ROOF_USER_SAFETY_OVERRIDE      ON //    OFF, ON displays safety override button.                                      Option
 
 #define ROOF_ACTUATE_SENSE            OFF //    OFF, n. Where n=1..8 (Sense#) for momentary switch to open or close roof.     Option
 #define ROOF_AUTOCLOSE_DAWN           OFF //    OFF, ON displays option to automatically close roof at dawn.                  Option
 #define ROOF_AUTOCLOSE_DAWN_DEFAULT   OFF //    OFF, ON enables AUTOCLOSE_DAWN option at startup, disabled otherwise.         Option
 #define ROOF_AUTOCLOSE_SAFETY         OFF //    OFF, ON closes the roof automatically if an UNSAFE condition is detected.     Option
 
-#define ROOF_MOUNT_PARK_BEFORE_CLOSE  OFF //    OFF, ON attempts to park the mount by a park relay or serial onstep.          Option
-#define ROOF_MOUNT_PARK_RELAY         OFF //    OFF, n. Where n=1..18 (Relay#) momentarily engages this relay to park mount.  Option
+#define ROOF_MOUNT_PARK_BEFORE_CLOSE   ON //    OFF, ON attempts to park the mount by a park relay or serial onstep.          Option
+#define ROOF_MOUNT_PARK_RELAY           1 //    OFF, n. Where n=1..18 (Relay#) momentarily engages this relay to park mount.  Option
 #define ROOF_MOUNT_PARK_TIMEOUT        30 //     30, n. Where n=20..480 (seconds) Maximum time to park mount before error.    Adjust
 
-#define ROOF_MOTOR_OPEN_RELAY         OFF //    OFF, n. Where n=1..18 (Relay#) engages this relay to open roof.               Option
-#define ROOF_MOTOR_CLOSE_RELAY        OFF //    OFF, n. Where n=1..18 (Relay#) engages this relay to close roof.              Option
+#define ROOF_MOTOR_OPEN_RELAY           6 //    OFF, n. Where n=1..18 (Relay#) engages this relay to open roof.               Option
+#define ROOF_MOTOR_CLOSE_RELAY          7 //    OFF, n. Where n=1..18 (Relay#) engages this relay to close roof.              Option
 #define ROOF_MOTOR_PRESS_TIME         1.5 //    1.5, n. Where n=1..10 (seconds) For garage door openers.                      Infreq
 #define ROOF_MOTOR_RELAY_MOMENTARY    OFF //    OFF, ON engage momentarily (_PRESS_TIME) to start an automatic open or close. Option
 #define ROOF_MOTOR_STOP_RELAY         OFF //    OFF, n. Where n=1..18 (Relay#) momentarily engages this relay to stop roof.   Option
@@ -242,40 +242,40 @@
 #define ROOF_POWER_PWM_POWER          OFF //    OFF, n. Where n=10..100 (%) PWM power level for roof motor DC control.        Option
 #define ROOF_POWER_PWM_SOFTSTART      OFF //    OFF, ON For PWM soft start, start 0% adds 5%/sec until ROOF_POWER_PWM_POWER.  Option
 
-#define ROOF_LIMIT_OPENED_SENSE       OFF //    OFF, n. Where n=1..8 (Sense#) Roof open limit switch (OPEN when ON.)          Option
-#define ROOF_LIMIT_CLOSED_SENSE       OFF //    OFF, n. Where n=1..8 (Sense#) Roof closed limit switch (CLOSED when ON.)      Option
+#define ROOF_LIMIT_OPENED_SENSE         2 //    OFF, n. Where n=1..8 (Sense#) Roof open limit switch (OPEN when ON.)          Option
+#define ROOF_LIMIT_CLOSED_SENSE         3 //    OFF, n. Where n=1..8 (Sense#) Roof closed limit switch (CLOSED when ON.)      Option
 #define ROOF_LIMIT_SENSE_FAIL_TIME      6 //      6, n. Where n=1..60 (seconds) Time to limit switch disengage failure error. Infreq
-#define ROOF_INTERLOCK_SENSE          OFF //    OFF, n. Where n=1..8 (Sense#) Roof safety interlock, motion allowed when ON.  Option
-#define ROOF_INTERLOCK_PRE_MOVE_TIME  1.5 //    1.5, n. Where n=1..10 (seconds) For roof open interlock sense.                Infreq
+#define ROOF_INTERLOCK_SENSE            1 //    OFF, n. Where n=1..8 (Sense#) Roof safety interlock, motion allowed when ON.  Option
+#define ROOF_INTERLOCK_PRE_MOVE_TIME  1.0 //    1.5, n. Where n=1..10 (seconds) For roof open interlock sense.                Infreq
 #define ROOF_INTERLOCK_POST_MOVE_TIME 2.0 //    2.0, n. Where n=1..10 (seconds) For roof close interlock sense.               Infreq
 
-#define ROOF_TIME_AVG                 300 //    300, n. Where n=30..1200 (seconds) Average time to open or close roof.        Adjust
+#define ROOF_TIME_AVG                  52 //    300, n. Where n=30..1200 (seconds) Average time to open or close roof.        Adjust
 #define ROOF_TIME_TOL                  30 //     30, n. Where n=0..120 (seconds) Additional time before stop & error thrown.  Adjust
 
 // DOME CONTROL PANEL --------------------------------------------------------------------------------------------------------------
-#define DOME                          OFF //    OFF, ON to enable the OCS website dome panel display.                         Option
+#define DOME                           ON //    OFF, ON to enable the OCS website dome panel display.                         Option
 
 #define DOME_SHUTTER_LOCK             OFF //    OFF, ON to disable dome motion unless shutter is open.                        Option
 
 // Usually this will be a GENERIC stepper driver or a servo SERVO_PE (Phase/Enable) or SERVO_EE (Enable/Enable)
-#define AXIS1_DRIVER_MODEL            OFF //    OFF, Enter driver model (above) to activate the dome Azimuth axis.            Option
+#define AXIS1_DRIVER_MODEL       SERVO_EE //    OFF, Enter driver model (above) to activate the dome Azimuth axis.            Option
 #define AXIS1_DRIVER_MICROSTEPS       OFF //    OFF, n. Microstep mode when tracking.                                         Option
 #define AXIS1_DRIVER_STATUS           OFF //    OFF, ON, HIGH, or LOW.  For driver status info/fault detection.               Option
 
 // for SERVO_PE and SERVO_EE driver models, encoder and PID settings:
-#define AXIS1_ENCODER                 OFF //    OFF, AB, CW_CCW, PULSE_DIR, PULSE_ONLY, SERIAL_BRIDGE.                        Option
-#define AXIS1_PID_P                   2.0 //    2.0, Proportional; scale of immediate response to position error.             Adjust
-#define AXIS1_PID_I                   5.0 //    5.0, Integral; rate of increasing response to position error over time.       Adjust
-#define AXIS1_PID_D                   1.0 //    1.0, Derivative; overshoot supression.                                        Adjust
+#define AXIS1_ENCODER                  AB //    OFF, AB, CW_CCW, PULSE_DIR, PULSE_ONLY, SERIAL_BRIDGE.                        Option
+#define AXIS1_PID_P                   0.1 //    2.0, Proportional; scale of immediate response to position error.             Adjust
+#define AXIS1_PID_I                 0.005 //    5.0, Integral; rate of increasing response to position error over time.       Adjust
+#define AXIS1_PID_D                 0.001 //    1.0, Derivative; overshoot supression.                                        Adjust
 
-#define AXIS1_SLEW_RATE_DESIRED       1.0 //    1.0, n, (degrees/second) Maximum speed depends on processor.                  Adjust
+#define AXIS1_SLEW_RATE_DESIRED         3 //    1.0, n, (degrees/second) Maximum speed depends on processor.                  Adjust
 
-#define AXIS1_STEPS_PER_DEGREE       60.0 //   60.0, n. Number of steps per degree for dome.                                  Adjust
+#define AXIS1_STEPS_PER_DEGREE        280 //   60.0, n. Number of steps per degree for dome.                                  Adjust
 #define AXIS1_REVERSE                 OFF //    OFF, ON Reverses movement direction, or reverse wiring instead to correct.    Option
 #define AXIS1_POWER_DOWN              OFF //    OFF, ON Powers off 30sec after movement stops or 10min after last<=1x guide.  Option
 
-#define AXIS1_LIMIT_MIN              -180 //   -180, n. Where n= 0..-360 (degrees.) Minimum Azimuth.                          Adjust
-#define AXIS1_LIMIT_MAX               180 //    180, n. Where n= 0.. 360 (degrees.) Maximum Azimuth.                          Adjust
+#define AXIS1_LIMIT_MIN              -359 //   -180, n. Where n= 0..-360 (degrees.) Minimum Azimuth.                          Adjust
+#define AXIS1_LIMIT_MAX               359 //    180, n. Where n= 0.. 360 (degrees.) Maximum Azimuth.                          Adjust
 
 #define AXIS1_SENSE_HOME              OFF //    OFF, HIGH or LOW enables & state clockwise home position, as seen from front. Option
 #define AXIS1_SENSE_LIMIT_MIN         OFF //    OFF, HIGH or LOW state on limit sense switch stops movement.                  Option
@@ -284,7 +284,18 @@
                                           //         Analog capable sense inputs also allow adding:
                                           //         |THLD(n) Where n=1..1023 (ADU) for Analog threshold.
                                           //         |HYST(n) Where n=0..1023 (ADU) for +/- Hystersis range.
+#define AXIS1_ENABLE_PIN              RELAY15_PIN
+#define AXIS1_STEP_PIN                RELAY14_PIN
+#define AXIS1_DIR_PIN                 RELAY13_PIN
+#define AXIS2_STEP_PIN                OFF
+#define AXIS2_DIR_PIN                 OFF
 
+#define AXIS1_ENCODER_A_PIN           SENSE7_PIN
+#define AXIS1_ENCODER_B_PIN           SENSE8_PIN
+#define SERVO_ANALOG_WRITE_FREQUENCY  100
+#define AXIS1_SERVO_VELOCITY_FACTOR   (frequency > 0.0 ? 6147 : (frequency < 0.0 ? -6147 : 0.0))
+#define AXIS1_SERVO_ACCELERATION      500
+#define AXIS1_BACKLASH_RATE           AXIS1_SLEW_RATE_DESIRED
 #define AXIS1_WRAP                    OFF //    OFF, ON Allows unlimited Azm range and ignores min/max limits.                Option
 
 #define AXIS2_DRIVER_MODEL            OFF //    OFF, Enter driver model to activate the (optional) dome Altitude axis.        Option

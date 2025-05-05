@@ -51,7 +51,7 @@
 #define TIME_LOCATION_SOURCE          NTP //    NTP, Network Time Protocol w/IP address settings below, or DS3231 (I2C),      Adjust
                                           //         SD3031 (I2C), DS3234 (SPI), TEENSY.
 #define TIME_NTP_IP         {129,6,15,28} // ...6,15,28}, time-a-g.nist.gov at 129,6,15,28 or 129,6,15,29, 129,6,15,30, etc.  Option
-#define TIME_ZONE                       0 //     -5, Time Zone (US Eastern Standard Time in this case.)                      <-Req'd
+#define TIME_ZONE                       1 //     -5, Time Zone (US Eastern Standard Time in this case.)                      <-Req'd
 #define TIME_DISPLAY                  STD //    STD, Display Standard Time, UT1 to display Universal Time.                    Adjust
 
 // STATUS PANEL FEATURES -----------------------------------------------------------------------------------------------------------

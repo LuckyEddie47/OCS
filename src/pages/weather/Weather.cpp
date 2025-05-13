@@ -46,15 +46,15 @@
         // a negative column# means this is a temperature and needs conversion to degrees F
         makeChartJs("ambientT", "Outside Temperature F (last "+periodStr+")", -8, 5, -40, 120, 20, period);
       #else
-        makeChartJs("ambientT", "Outside Temperature C (last "+periodStr+")", 8, 5, -20, 40, 10, period);
+        makeChartJs("ambientT", "Outside Temperature C (last "+periodStr+")", 8, 5, -40, 50, 10, period);
       #endif
     #endif
     #if WEATHER_WIND_SPD == ON
-//      #if DISPLAY_UNITS == IMPERIAL
+      #if DISPLAY_UNITS == IMPERIAL
         makeChartJs("WS", "Wind Speed mph (last "+periodStr+")", -39, 5, 0, 50, 10, period);
-//      #else
-//        makeChartJs("WS", "Wind Speed kph (last "+periodStr+")", 39, 5, 0, 80, 10, period);
-//      #endif
+      #else
+        makeChartJs("WS", "Wind Speed kph (last "+periodStr+")", 39, 5, 0, 80, 10, period);
+      #endif
     #endif
     #if WEATHER_PRESSURE == ON
       #if DISPLAY_UNITS == IMPERIAL
@@ -64,7 +64,7 @@
       #endif
     #endif
     #if WEATHER_HUMIDITY == ON
-      makeChartJs("RH", "Relative Humidity % (last "+periodStr+")", 33, 5, 30, 100, 10, period);
+      makeChartJs("RH", "Relative Humidity % (last "+periodStr+")", 33, 5, 0, 100, 10, period);
     #endif
     www.sendContent(F("}\r\n"));
     www.sendContent(F("</script>\r\n"));

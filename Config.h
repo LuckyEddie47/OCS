@@ -51,13 +51,13 @@
 #define TIME_LOCATION_SOURCE          NTP //    NTP, Network Time Protocol w/IP address settings below, or DS3231 (I2C),      Adjust
                                           //         SD3031 (I2C), DS3234 (SPI), TEENSY.
 #define TIME_NTP_IP         {129,6,15,28} // ...6,15,28}, time-a-g.nist.gov at 129,6,15,28 or 129,6,15,29, 129,6,15,30, etc.  Option
-#define TIME_ZONE                       1 //     -5, Time Zone (US Eastern Standard Time in this case.)                      <-Req'd
+#define TIME_ZONE                      -1 //     -5, Time Zone (US Eastern Standard Time in this case.)                      <-Req'd
 #define TIME_DISPLAY                  STD //    STD, Display Standard Time, UT1 to display Universal Time.                    Adjust
 
 // STATUS PANEL FEATURES -----------------------------------------------------------------------------------------------------------
 #define STAT                           ON //    OFF, ON to enable the OCS website status panel display.                       Option
 
-#define STAT_MAINS_SENSE              OFF // was 8   OFF, n. Where n=1..8 (Sense#) mains power good, OFF (power failure) is UNSAFE Option
+#define STAT_MAINS_SENSE              OFF //    OFF, n. Where n=1..8 (Sense#) mains power good, OFF (power failure) is UNSAFE Option
 #define STAT_MAINS_CURRENT_ANALOG     OFF //    OFF, n. Where n=1..16 (Analog#) measure/display current mains.                Option
 #define STAT_MAINS_AUX_CURRENT_ANALOG OFF //    OFF, n. Where n=1..16 (Analog#) measure/display current mains (aux.)          Option
 #define STAT_MAINS_SAFETY_DELAY       300 //    OFF, n. Where n=1..600 (s). Mains safety sense delay time.                    Option
@@ -85,15 +85,15 @@
 
 #define POWER_DEVICE1_RELAY            10 //    OFF, n. Where n=1..18 (Relay#) with _NAME below.                              Option
 #define POWER_DEVICE1_MEMORY          OFF //    OFF, ON to enable memory (across power cycles) for this relay state.          Option
-#define POWER_DEVICE1_NAME       "HEATER"
+#define POWER_DEVICE1_NAME        "HEATER"
 
 #define POWER_DEVICE2_RELAY            12 //    OFF, n. Where n=1..18 (Relay#) with _NAME below.                              Option
 #define POWER_DEVICE2_MEMORY          OFF //    OFF, ON to enable memory (across power cycles) for this relay state.          Option
-#define POWER_DEVICE2_NAME "DEHUMIDIFIER"
+#define POWER_DEVICE2_NAME  "DEHUMIDIFIER"
 
 #define POWER_DEVICE3_RELAY             8 //    OFF, n. Where n=1..18 (Relay#) with _NAME below.                              Option
 #define POWER_DEVICE3_MEMORY          OFF //    OFF, ON to enable memory (across power cycles) for this relay state.          Option
-#define POWER_DEVICE3_NAME  "FLATS_PANEL"
+#define POWER_DEVICE3_NAME   "FLATS_PANEL"
 
 #define POWER_DEVICE4_RELAY           OFF //    OFF, n. Where n=1..18 (Relay#) with _NAME below.                              Option
 #define POWER_DEVICE4_MEMORY          OFF //    OFF, ON to enable memory (across power cycles) for this relay state.          Option
@@ -140,7 +140,7 @@
 #define WEATHER_HUMIDITY               ON //    OFF, ON for measuring outside humidity.                                       Option
 
 #define WEATHER_WIND_SPD               ON //    OFF, ON for measuring wind speed.                                             Option
-#define WEATHER_WIND_SPD_THRESHOLD     20 //     20, n. Where n=0..100 (in kph) wind speed above this is considered UNSAFE.   Adjust
+#define WEATHER_WIND_SPD_THRESHOLD     25 //     20, n. Where n=0..100 (in kph) wind speed above this is considered UNSAFE.   Adjust
 
 #define WEATHER_RAIN                  OFF //    OFF, ON to enable rain sensor, a "wet" condition is considered to be UNSAFE.  Option
 
@@ -174,7 +174,7 @@
 
 #define WEATHER_SENSOR_WIND_CUP         4 //    OFF, n. Where n=1..8 (Sense#) to enable. Wind speed, cup anemometer.          Option
 // Conversion factor, pulses per minute (x) to wind speed in KPH
-#define WEATHER_SENSOR_WIND_CUP2KPH(x) (x*0.16)
+#define WEATHER_SENSOR_WIND_CUP2KPH(x) (x*0.2)
 #define WEATHER_SENSOR_WIND_EDGE  FALLING //    RISING or FALLING. Pulse edge to detect.                                      Adjust
 #define WEATHER_SENSOR_WIND_CUP_DB     50 //    OFF, n. Where n=1..100 (ms) Wind Cup input debounce time.                     Option
 
@@ -186,7 +186,7 @@
 
 #define WEATHER_SENSOR_RAIN_DIGITAL   OFF //    OFF, n. Where n=1..8 (Sense#) to enable.  e.g. Kemo M152K or Hydreon RG-9     Option
 
-#define WEATHER_SENSOR_CLOUD_MLX90614 0x5A //    OFF, 0x5A (I2C Address) to enable. Gets IR sky IR temp. for cloud detection.  Adjust
+#define WEATHER_SENSOR_CLOUD_MLX90614 OFF //    OFF, 0x5A (I2C Address) to enable. Gets IR sky IR temp. for cloud detection.  Adjust
 
 #define WEATHER_SENSOR_SKYQ_TSL2591   OFF //    OFF, 0x28 (I2C Address) to enable. Sky brightness for sky quality estimate.   Option
 
@@ -246,11 +246,11 @@
 #define ROOF_LIMIT_CLOSED_SENSE         3 //    OFF, n. Where n=1..8 (Sense#) Roof closed limit switch (CLOSED when ON.)      Option
 #define ROOF_LIMIT_SENSE_FAIL_TIME      6 //      6, n. Where n=1..60 (seconds) Time to limit switch disengage failure error. Infreq
 #define ROOF_INTERLOCK_SENSE            1 //    OFF, n. Where n=1..8 (Sense#) Roof safety interlock, motion allowed when ON.  Option
-#define ROOF_INTERLOCK_PRE_MOVE_TIME  1.0 //    1.5, n. Where n=1..10 (seconds) For roof open interlock sense.                Infreq
+#define ROOF_INTERLOCK_PRE_MOVE_TIME  1.5 //    1.5, n. Where n=1..10 (seconds) For roof open interlock sense.                Infreq
 #define ROOF_INTERLOCK_POST_MOVE_TIME 2.0 //    2.0, n. Where n=1..10 (seconds) For roof close interlock sense.               Infreq
 
-#define ROOF_TIME_AVG                  52 //    300, n. Where n=30..1200 (seconds) Average time to open or close roof.        Adjust
-#define ROOF_TIME_TOL                  30 //     30, n. Where n=0..120 (seconds) Additional time before stop & error thrown.  Adjust
+#define ROOF_TIME_AVG                 52 //    300, n. Where n=30..1200 (seconds) Average time to open or close roof.        Adjust
+#define ROOF_TIME_TOL                  10 //     30, n. Where n=0..120 (seconds) Additional time before stop & error thrown.  Adjust
 
 // DOME CONTROL PANEL --------------------------------------------------------------------------------------------------------------
 #define DOME                           ON //    OFF, ON to enable the OCS website dome panel display.                         Option
@@ -264,15 +264,15 @@
 
 // for SERVO_PE and SERVO_EE driver models, encoder and PID settings:
 #define AXIS1_ENCODER                  AB //    OFF, AB, CW_CCW, PULSE_DIR, PULSE_ONLY, SERIAL_BRIDGE.                        Option
-#define AXIS1_PID_P                   0.1 //    2.0, Proportional; scale of immediate response to position error.             Adjust
-#define AXIS1_PID_I                 0.005 //    5.0, Integral; rate of increasing response to position error over time.       Adjust
-#define AXIS1_PID_D                 0.001 //    1.0, Derivative; overshoot supression.                                        Adjust
+#define AXIS1_PID_P                   2.0 //    2.0, Proportional; scale of immediate response to position error.             Adjust
+#define AXIS1_PID_I                   5.0 //    5.0, Integral; rate of increasing response to position error over time.       Adjust
+#define AXIS1_PID_D                   1.0 //    1.0, Derivative; overshoot supression.                                        Adjust
 
-#define AXIS1_SLEW_RATE_DESIRED         3 //    1.0, n, (degrees/second) Maximum speed depends on processor.                  Adjust
+#define AXIS1_SLEW_RATE_DESIRED       7.0 //    1.0, n, (degrees/second) Maximum speed depends on processor.                  Adjust
 
-#define AXIS1_STEPS_PER_DEGREE        280 //   60.0, n. Number of steps per degree for dome.                                  Adjust
+#define AXIS1_STEPS_PER_DEGREE      280.0 //   60.0, n. Number of steps per degree for dome.                                  Adjust
 #define AXIS1_REVERSE                 OFF //    OFF, ON Reverses movement direction, or reverse wiring instead to correct.    Option
-#define AXIS1_POWER_DOWN              OFF //    OFF, ON Powers off 30sec after movement stops or 10min after last<=1x guide.  Option
+#define AXIS1_POWER_DOWN               ON //    OFF, ON Powers off 30sec after movement stops or 10min after last<=1x guide.  Option
 
 #define AXIS1_LIMIT_MIN              -359 //   -180, n. Where n= 0..-360 (degrees.) Minimum Azimuth.                          Adjust
 #define AXIS1_LIMIT_MAX               359 //    180, n. Where n= 0.. 360 (degrees.) Maximum Azimuth.                          Adjust
@@ -284,19 +284,22 @@
                                           //         Analog capable sense inputs also allow adding:
                                           //         |THLD(n) Where n=1..1023 (ADU) for Analog threshold.
                                           //         |HYST(n) Where n=0..1023 (ADU) for +/- Hystersis range.
+
+#define AXIS1_WRAP                    OFF //    OFF, ON Allows unlimited Azm range and ignores min/max limits.                Option
+
+// My additions
+#define AXIS1_ENCODER_A_PIN           SENSE7_PIN
+#define AXIS1_ENCODER_B_PIN           SENSE8_PIN
 #define AXIS1_ENABLE_PIN              RELAY15_PIN
 #define AXIS1_STEP_PIN                RELAY14_PIN
 #define AXIS1_DIR_PIN                 RELAY13_PIN
 #define AXIS2_STEP_PIN                OFF
 #define AXIS2_DIR_PIN                 OFF
-
-#define AXIS1_ENCODER_A_PIN           SENSE7_PIN
-#define AXIS1_ENCODER_B_PIN           SENSE8_PIN
-#define SERVO_ANALOG_WRITE_FREQUENCY  100
-#define AXIS1_SERVO_VELOCITY_FACTOR   (frequency > 0.0 ? 6147 : (frequency < 0.0 ? -6147 : 0.0))
-#define AXIS1_SERVO_ACCELERATION      500
+//#define AXIS1_SERVO_ACCELERATION      500
 #define AXIS1_BACKLASH_RATE           AXIS1_SLEW_RATE_DESIRED
-#define AXIS1_WRAP                    OFF //    OFF, ON Allows unlimited Azm range and ignores min/max limits.                Option
+//#define SERVO_ANALOG_WRITE_FREQUENCY  100
+//#define AXIS1_SERVO_VELOCITY_FACTOR   ((frequency > 0.0) && (frequency < 6143) ? 6143
+#define SERVO_ANALOG_WRITE_RANGE_MIN  0.75F // minimum fraction of the analog write range (0.0 to 1.0)
 
 #define AXIS2_DRIVER_MODEL            OFF //    OFF, Enter driver model to activate the (optional) dome Altitude axis.        Option
 #define AXIS2_DRIVER_MICROSTEPS       OFF //    OFF, n. Microstep mode when tracking.                                         Option

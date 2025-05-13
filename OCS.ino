@@ -2,7 +2,7 @@
  * Title       Observatory-Control-System
  * by          Howard Dutton
  *
- * Copyright (C) 2012 to 2024 Howard Dutton
+ * Copyright (C) 2012 to 2025 Howard Dutton
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@
 #define FirmwareName                "OCS"
 #define FirmwareVersionMajor        3
 #define FirmwareVersionMinor        12     // minor version 00 to 99
-#define FirmwareVersionPatch        "b"    // for example major.minor patch: 10.03c
+#define FirmwareVersionPatch        "d"    // for example major.minor patch: 10.03c
 #define FirmwareVersionConfig       2      // internal, for tracking configuration file changes
 
 #include "src/Common.h"
@@ -84,6 +84,8 @@ void setup() {
   // start low level hardware
   VLF("MSG: Setup, HAL initalize");
   HAL_INIT();
+  WIRE_INIT();
+
   nv.init();
   delay(2000);
 
@@ -164,7 +166,7 @@ void setup() {
   // start any serial connection to OnStep
   #if OPERATIONAL_MODE != OFF
     #if SERIAL_CLIENT == ON
-      SERIAL_IP.begin(9997, 2L*1000L, true);
+      SERIAL_IP.begin(9997, 8L*1000L);
     #endif
   #endif
   #ifdef SERIAL_UART

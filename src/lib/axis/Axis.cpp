@@ -494,7 +494,7 @@ void Axis::poll() {
         autoRate = AR_NONE;
         freq = 0.0F;
         motor->setSynchronized(true);
-        VF("MSG:"); V(axisPrefix); VLF("slew stopped");
+        VF("MSG:"); V(axisPrefix); VLF("target reached");
       } else {
         freq = sqrtf(2.0F*(slewAccelRateFs*FRACTIONAL_SEC)*getOriginOrTargetDistance());
         if (freq < backlashFreq) freq = backlashFreq;

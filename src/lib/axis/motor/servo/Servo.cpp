@@ -373,7 +373,7 @@ void ServoMotor::poll() {
   if (enabled) feedback->poll();
 
   float velocity = velocityEstimate + control->out;
-  if (!enabled) velocity = 0.0F;
+  if (!enabled || (labs(motorSteps - encoderCounts) < 281)) velocity = 0.0F;
 
   #ifdef ABSOLUTE_ENCODER_CALIBRATION
     if (axisNumber == 1) {
@@ -424,13 +424,14 @@ void ServoMotor::poll() {
       }
 
       // if above 90% power and we're moving away from the target something is seriously wrong, so shut it down
-      if (labs(encoderCounts - lastEncoderCounts) > lastTargetDistance && abs(velocityPercent) >= 90) {
+      //if (labs(encoderCounts - lastEncoderCounts) > lastTargetDistance && abs(velocityPercent) >= 90) {
+    if (labs(motorCounts - encoderCounts) > lastTargetDistance && abs(velocityPercent) >= 90) {
         DF("WRN:"); D(axisPrefix); DF("runaway detected!");
         DLF(" > 90% power while moving away from the target!");
         enable(false);
         safetyShutdown = true;
       }
-      lastTargetDistance = labs(encoderCounts - lastEncoderCounts);
+      lastTargetDistance = labs(motorCounts - encoderCounts);
 
       // if we were below -33% and above 33% power in a one second period something is seriously wrong, so shut it down
       if (wasBelow33 && wasAbove33) {
@@ -448,7 +449,7 @@ void ServoMotor::poll() {
   }
 
   #if DEBUG != OFF && defined(DEBUG_SERVO) && DEBUG_SERVO != OFF
-    if (axisNumber == DEBUG_SERVO) {
+    if ((axisNumber == DEBUG_SERVO) && (velocityPercent != 0.0)) {
       static uint16_t count = 0;
       count++;
       if (count % 10 == 0) {
@@ -458,9 +459,11 @@ void ServoMotor::poll() {
         if (axisNumber == 1) spas = AXIS1_STEPS_PER_DEGREE/3600.0F; else if (axisNumber == 2) spas = AXIS2_STEPS_PER_DEGREE/3600.0F;
 
 //      sprintf(s, "Ax%dSvo: Delta %6ld, Motor %6ld, Encoder %6ld, Ax%dSvo_Power: %6.3f%%\r\n", (int)axisNumber, (motorCounts - encoderCounts), motorCounts, (long)encoderCounts, (int)axisNumber, velocityPercent);
+        sprintf(s, "Motor: %6ld, Encoder: %6ld, Power: %6.3f\r\n", motorSteps, encoderCounts, velocityPercent);
+
 //      sprintf(s, "Ax%dSvo: Motor %6ld, Encoder %6ld\r\n", (int)axisNumber, motorCounts, (long)encoderCounts);
 //      sprintf(s, "Ax%dSvo: Delta %0.2f\r\n", (int)axisNumber, (motorCounts - (long)encoderCounts)/12.9425);
-      sprintf(s, "Ax%dSvo: DeltaASf: %0.2f, DeltaAS: %0.2f, Ax%dSvo_Power: %6.3f%%\r\n", (int)axisNumber, (motorCounts - encoderCounts)/spas, (motorCounts - unfilteredEncoderCounts)/spas, (int)axisNumber, velocityPercent);
+//      sprintf(s, "Ax%dSvo: DeltaASf: %0.2f, DeltaAS: %0.2f, Ax%dSvo_Power: %6.3f%%\r\n", (int)axisNumber, (motorCounts - encoderCounts)/spas, (motorCounts - unfilteredEncoderCounts)/spas, (int)axisNumber, velocityPercent);
 
         D(s);
         UNUSED(spas);

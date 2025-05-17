@@ -186,7 +186,7 @@
 
 #define WEATHER_SENSOR_RAIN_DIGITAL   OFF //    OFF, n. Where n=1..8 (Sense#) to enable.  e.g. Kemo M152K or Hydreon RG-9     Option
 
-#define WEATHER_SENSOR_CLOUD_MLX90614 OFF //    OFF, 0x5A (I2C Address) to enable. Gets IR sky IR temp. for cloud detection.  Adjust
+#define WEATHER_SENSOR_CLOUD_MLX90614 0x5A //    OFF, 0x5A (I2C Address) to enable. Gets IR sky IR temp. for cloud detection.  Adjust
 
 #define WEATHER_SENSOR_SKYQ_TSL2591   OFF //    OFF, 0x28 (I2C Address) to enable. Sky brightness for sky quality estimate.   Option
 
@@ -264,15 +264,15 @@
 
 // for SERVO_PE and SERVO_EE driver models, encoder and PID settings:
 #define AXIS1_ENCODER                  AB //    OFF, AB, CW_CCW, PULSE_DIR, PULSE_ONLY, SERIAL_BRIDGE.                        Option
-#define AXIS1_PID_P                   2.0 //    2.0, Proportional; scale of immediate response to position error.             Adjust
-#define AXIS1_PID_I                   5.0 //    5.0, Integral; rate of increasing response to position error over time.       Adjust
-#define AXIS1_PID_D                   1.0 //    1.0, Derivative; overshoot supression.                                        Adjust
+#define AXIS1_PID_P                   1 //    2.0, Proportional; scale of immediate response to position error.             Adjust
+#define AXIS1_PID_I                 0 //    5.0, Integral; rate of increasing response to position error over time.       Adjust
+#define AXIS1_PID_D                 0 //    1.0, Derivative; overshoot supression.                                        Adjust
 
-#define AXIS1_SLEW_RATE_DESIRED       7.0 //    1.0, n, (degrees/second) Maximum speed depends on processor.                  Adjust
+#define AXIS1_SLEW_RATE_DESIRED       4 //    1.0, n, (degrees/second) Maximum speed depends on processor.                  Adjust
 
 #define AXIS1_STEPS_PER_DEGREE      280.0 //   60.0, n. Number of steps per degree for dome.                                  Adjust
 #define AXIS1_REVERSE                 OFF //    OFF, ON Reverses movement direction, or reverse wiring instead to correct.    Option
-#define AXIS1_POWER_DOWN               ON //    OFF, ON Powers off 30sec after movement stops or 10min after last<=1x guide.  Option
+#define AXIS1_POWER_DOWN              OFF //    OFF, ON Powers off 30sec after movement stops or 10min after last<=1x guide.  Option
 
 #define AXIS1_LIMIT_MIN              -359 //   -180, n. Where n= 0..-360 (degrees.) Minimum Azimuth.                          Adjust
 #define AXIS1_LIMIT_MAX               359 //    180, n. Where n= 0.. 360 (degrees.) Maximum Azimuth.                          Adjust
@@ -293,13 +293,18 @@
 #define AXIS1_ENABLE_PIN              RELAY15_PIN
 #define AXIS1_STEP_PIN                RELAY14_PIN
 #define AXIS1_DIR_PIN                 RELAY13_PIN
+#define AXIS1_ENABLE_STATE            HIGH
+#define AXIS1_SERVO_ACCELERATION      10000
+#define AXIS1_ACCELERATION_TIME       0.2
+#define AXIS1_BACKLASH_RATE           AXIS1_SLEW_RATE_DESIRED
+#define SERVO_ANALOG_WRITE_FREQUENCY  100
+#define AXIS1_SERVO_VELOCITY_FACTOR   ((frequency > 0.0) && (frequency < 6143) ? 6143 : ((frequency < 0.0) && (frequency > -6143)) ? -6143 : 0.0)
+#define SERVO_ANALOG_WRITE_RANGE_MIN 0.95F // minimum fraction of the analog write range (0.0 to 1.0)
+#define DEFAULT_POWER_DOWN_TIME      5000 // motor power down time, in milliseconds
+#define AXIS1_TARGET_TOLERANCE        1.0
+#define SERVO_SAFETY_DISABLE
 #define AXIS2_STEP_PIN                OFF
 #define AXIS2_DIR_PIN                 OFF
-//#define AXIS1_SERVO_ACCELERATION      500
-#define AXIS1_BACKLASH_RATE           AXIS1_SLEW_RATE_DESIRED
-//#define SERVO_ANALOG_WRITE_FREQUENCY  100
-//#define AXIS1_SERVO_VELOCITY_FACTOR   ((frequency > 0.0) && (frequency < 6143) ? 6143
-#define SERVO_ANALOG_WRITE_RANGE_MIN  0.75F // minimum fraction of the analog write range (0.0 to 1.0)
 
 #define AXIS2_DRIVER_MODEL            OFF //    OFF, Enter driver model to activate the (optional) dome Altitude axis.        Option
 #define AXIS2_DRIVER_MICROSTEPS       OFF //    OFF, n. Microstep mode when tracking.                                         Option

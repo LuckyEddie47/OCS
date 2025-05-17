@@ -14,11 +14,11 @@
 // DEBUG ----------------------------------------------------------------------------------------------------------------------------
 // Enable additional debugging and/or status messages on the specified SERIAL_DEBUG port
 // Note that the SERIAL_DEBUG port cannot be used for normal communication with OnStep
-#define DEBUG                         VERBOSE //    OFF, Use ON for background error messages only, use VERBOSE for all           Infreq
+#define DEBUG                         OFF //    OFF, Use ON for background error messages only, use VERBOSE for all           Infreq
                                           //         error and status messages, use CONSOLE for VT100 debug console,
                                           //         or use PROFILER for VT100 task profiler.
 
-#define DEBUG_SERVO                   1 //    OFF, n. Where n=1 to 9 as the designated axis for logging servo activity.     Option
+#define DEBUG_SERVO                   OFF //    OFF, n. Where n=1 to 9 as the designated axis for logging servo activity.     Option
 #define DEBUG_ECHO_COMMANDS           OFF //    OFF, Use ON to log command/responses to the debug serial port.                Option
 #define DEBUG_CONNECT_CHECK           OFF //    OFF, ON to enable debug code for connection checks.                           Infreq
 #define DEBUG_SD                      OFF //    OFF, ON to enable debug code for the SD card support, use VERBOSE for all.    Infreq

@@ -57,10 +57,12 @@
 // STATUS PANEL FEATURES -----------------------------------------------------------------------------------------------------------
 #define STAT                           ON //    OFF, ON to enable the OCS website status panel display.                       Option
 
-#define STAT_MAINS_SENSE              OFF //    OFF, n. Where n=1..8 (Sense#) mains power good, OFF (power failure) is UNSAFE Option
+#define STAT_MAINS_SENSE                5 //    OFF, n. Where n=1..8 (Sense#) mains power good, OFF (power failure) is UNSAFE Option
 #define STAT_MAINS_CURRENT_ANALOG     OFF //    OFF, n. Where n=1..16 (Analog#) measure/display current mains.                Option
 #define STAT_MAINS_AUX_CURRENT_ANALOG OFF //    OFF, n. Where n=1..16 (Analog#) measure/display current mains (aux.)          Option
-#define STAT_MAINS_SAFETY_DELAY       300 //    OFF, n. Where n=1..600 (s). Mains safety sense delay time.                    Option
+#define STAT_MAINS_SAFETY_DELAY       120 //    OFF, n. Where n=1..600 (s). Mains safety sense delay time.                    Option
+#define SENSE5_ON_STATE              HIGH
+#define SENSE5_INIT        INPUT_PULLDOWN
 
 // Converts the analog measure (range 0 to 1.0) to Amps
 #define STAT_MAINS_ANALOG_TO_CURRENT(x) (x*NAN)
@@ -264,11 +266,11 @@
 
 // for SERVO_PE and SERVO_EE driver models, encoder and PID settings:
 #define AXIS1_ENCODER                  AB //    OFF, AB, CW_CCW, PULSE_DIR, PULSE_ONLY, SERIAL_BRIDGE.                        Option
-#define AXIS1_PID_P                   1 //    2.0, Proportional; scale of immediate response to position error.             Adjust
-#define AXIS1_PID_I                 0 //    5.0, Integral; rate of increasing response to position error over time.       Adjust
-#define AXIS1_PID_D                 0 //    1.0, Derivative; overshoot supression.                                        Adjust
+#define AXIS1_PID_P                     1 //    2.0, Proportional; scale of immediate response to position error.             Adjust
+#define AXIS1_PID_I                     0 //    5.0, Integral; rate of increasing response to position error over time.       Adjust
+#define AXIS1_PID_D                     0 //    1.0, Derivative; overshoot supression.                                        Adjust
 
-#define AXIS1_SLEW_RATE_DESIRED       4 //    1.0, n, (degrees/second) Maximum speed depends on processor.                  Adjust
+#define AXIS1_SLEW_RATE_DESIRED         4 //    1.0, n, (degrees/second) Maximum speed depends on processor.                  Adjust
 
 #define AXIS1_STEPS_PER_DEGREE      280.0 //   60.0, n. Number of steps per degree for dome.                                  Adjust
 #define AXIS1_REVERSE                 OFF //    OFF, ON Reverses movement direction, or reverse wiring instead to correct.    Option
@@ -302,6 +304,7 @@
 #define SERVO_ANALOG_WRITE_RANGE_MIN 0.95F // minimum fraction of the analog write range (0.0 to 1.0)
 #define DEFAULT_POWER_DOWN_TIME      5000 // motor power down time, in milliseconds
 #define AXIS1_TARGET_TOLERANCE        1.0
+#define AXIS1_NO_TRACKING
 #define SERVO_SAFETY_DISABLE
 #define AXIS2_STEP_PIN                OFF
 #define AXIS2_DIR_PIN                 OFF

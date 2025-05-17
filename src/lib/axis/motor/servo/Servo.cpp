@@ -399,7 +399,9 @@ void ServoMotor::poll() {
 
   if (feedback->autoScaleParameters) {
     if (!slewing && enabled) {
-      if ((long)(millis() - lastSlewingTime) > SERVO_SLEWING_TO_TRACKING_DELAY) feedback->selectTrackingParameters(); else feedback->selectSlewingParameters();
+      #ifndef AXIS1_NO_TRACKING
+        if ((long)(millis() - lastSlewingTime) > SERVO_SLEWING_TO_TRACKING_DELAY) feedback->selectTrackingParameters(); else feedback->selectSlewingParameters();
+      #endif
     } else {
       lastSlewingTime = millis();
       feedback->selectSlewingParameters();

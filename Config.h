@@ -251,7 +251,7 @@
 #define ROOF_INTERLOCK_PRE_MOVE_TIME  1.5 //    1.5, n. Where n=1..10 (seconds) For roof open interlock sense.                Infreq
 #define ROOF_INTERLOCK_POST_MOVE_TIME 2.0 //    2.0, n. Where n=1..10 (seconds) For roof close interlock sense.               Infreq
 
-#define ROOF_TIME_AVG                 52 //    300, n. Where n=30..1200 (seconds) Average time to open or close roof.        Adjust
+#define ROOF_TIME_AVG                  52 //    300, n. Where n=30..1200 (seconds) Average time to open or close roof.        Adjust
 #define ROOF_TIME_TOL                  10 //     30, n. Where n=0..120 (seconds) Additional time before stop & error thrown.  Adjust
 
 // DOME CONTROL PANEL --------------------------------------------------------------------------------------------------------------

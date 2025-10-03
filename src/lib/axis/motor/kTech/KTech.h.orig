@@ -60,7 +60,11 @@ class KTechMotor : public Motor {
     void setInstrumentCoordinateSteps(long value);
 
     // get the associated driver status
+<<<<<<< HEAD
+    DriverStatus getDriverStatus() { if (ready) driver->updateStatus(); else status = errorStatus; return status; }
+=======
     DriverStatus getDriverStatus() { if (ready) updateStatus(); else status = errorStatus; return status; }
+>>>>>>> upstream/master
 
     // resets motor and target angular position in steps, also zeros backlash and index 
     void resetPositionSteps(long value);

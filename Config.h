@@ -51,7 +51,7 @@
 #define TIME_LOCATION_SOURCE          NTP //    NTP, Network Time Protocol w/IP address settings below, or DS3231 (I2C),      Adjust
                                           //         SD3031 (I2C), DS3234 (SPI), TEENSY.
 #define TIME_NTP_IP         {129,6,15,28} // ...6,15,28}, time-a-g.nist.gov at 129,6,15,28 or 129,6,15,29, 129,6,15,30, etc.  Option
-#define TIME_ZONE                      -1 //     -5, Time Zone (US Eastern Standard Time in this case.)                      <-Req'd
+#define TIME_ZONE                       1 //     -5, Time Zone (US Eastern Standard Time in this case.)                      <-Req'd
 #define TIME_DISPLAY                  STD //    STD, Display Standard Time, UT1 to display Universal Time.                    Adjust
 
 // STATUS PANEL FEATURES -----------------------------------------------------------------------------------------------------------
@@ -139,15 +139,15 @@
 #define WEATHER_NOMINAL_PRESSURE     1010 //   1010, n. Where n=500..1050 (in mb) site nominal pressure for Chart.            Adjust
 #define WEATHER_ALTITUDE               25 //    100, n. Where n=-86..5000 (meters) site altitude.                             Adjust
 
-#define WEATHER_HUMIDITY               ON //    OFF, ON for measuring outside humidity.                                       Option
+#define WEATHER_HUMIDITY              OFF //    OFF, ON for measuring outside humidity.                                       Option
 
 #define WEATHER_WIND_SPD               ON //    OFF, ON for measuring wind speed.                                             Option
-#define WEATHER_WIND_SPD_THRESHOLD     25 //     20, n. Where n=0..100 (in kph) wind speed above this is considered UNSAFE.   Adjust
+#define WEATHER_WIND_SPD_THRESHOLD     32 //     20, n. Where n=0..100 (in kph) wind speed above this is considered UNSAFE.   Adjust
 
-#define WEATHER_RAIN                  OFF //    OFF, ON to enable rain sensor, a "wet" condition is considered to be UNSAFE.  Option
+#define WEATHER_RAIN                   ON //    OFF, ON to enable rain sensor, a "wet" condition is considered to be UNSAFE.  Option
 
 #define WEATHER_CLOUD_CVR              ON //    OFF, ON to enable the cloud sensor, above WEATHER_SAFE_THRESHOLD is UNSAFE.   Option
-#define WEATHER_SAFE_THRESHOLD        -14 //    -14, n. Where n=-25..0 (in Deg. C)                                            Adjust
+#define WEATHER_SAFE_THRESHOLD         -9 //    -14, n. Where n=-25..0 (in Deg. C)                                            Adjust
 #define WEATHER_VCLR_THRESHOLD        -19 //    -19, n. Where n=-25..0 (in Deg. C)                                            Adjust
 #define WEATHER_CLER_THRESHOLD        -17 //    -17, n. Where n=-25..0 (in Deg. C)                                            Adjust
 #define WEATHER_HAZE_THRESHOLD        -14 //    -14, n. Where n=-25..0 (in Deg. C)                                            Adjust
@@ -158,9 +158,9 @@
 #define WEATHER_SKY_QUAL              OFF //    OFF, ON for measuring sky quality (darkness in magnitudes per sq arc-sec.)    Option
 
 // WEATHER SENSORS ----------------------
-#define WEATHER_SENSOR_TPH_BME280    0x77 //    OFF, 0x76 or 0x77 (I2C Address) to enable. Temperature, pressure, humidity.   Option
+#define WEATHER_SENSOR_TPH_BME280     OFF //    OFF, 0x76 or 0x77 (I2C Address) to enable. Temperature, pressure, humidity.   Option
 
-#define WEATHER_SENSOR_TP_BMP280      OFF //    OFF, 0x76 or 0x77 (I2C Address) to enable. Temperature, pressure.             Option
+#define WEATHER_SENSOR_TP_BMP280     0x77 //    OFF, 0x76 or 0x77 (I2C Address) to enable. Temperature, pressure.             Option
 
 #define WEATHER_SENSOR_TP_BMP085      OFF //    OFF, 0x77 (I2C Address) to enable. Temperature, pressure. For BMP180 also.    Option
 
@@ -182,9 +182,9 @@
 
 #define WEATHER_SENSOR_WIND_REV_P     OFF //    OFF, n. Where n=1..16 (Analog#) to enable. Wind speed.                        Option
 
-#define WEATHER_SENSOR_RAIN_GENERIC   OFF //    OFF, n. Where n=1..16 (Analog#) to enable.                                    Option
-#define WEATHER_SENSOR_RAIN_LOW      0.25 //   0.25, n. Where n=0.0 to 1.0 for lower range below which is dry.                Option
-#define WEATHER_SENSOR_RAIN_HIGH     0.75 //   0.75, n. Where n=0.0 to 1.0 for lower range below which is wet.                Option
+#define WEATHER_SENSOR_RAIN_GENERIC     1 //    OFF, n. Where n=1..16 (Analog#) to enable.                                    Option
+#define WEATHER_SENSOR_RAIN_LOW      0.02 //   0.25, n. Where n=0.0 to 1.0 for lower range below which is dry.                Option
+#define WEATHER_SENSOR_RAIN_HIGH     0.07 //   0.75, n. Where n=0.0 to 1.0 for lower range below which is wet.                Option
 
 #define WEATHER_SENSOR_RAIN_DIGITAL   OFF //    OFF, n. Where n=1..8 (Sense#) to enable.  e.g. Kemo M152K or Hydreon RG-9     Option
 
@@ -226,11 +226,11 @@
 #define ROOF_ACTUATE_SENSE            OFF //    OFF, n. Where n=1..8 (Sense#) for momentary switch to open or close roof.     Option
 #define ROOF_AUTOCLOSE_DAWN           OFF //    OFF, ON displays option to automatically close roof at dawn.                  Option
 #define ROOF_AUTOCLOSE_DAWN_DEFAULT   OFF //    OFF, ON enables AUTOCLOSE_DAWN option at startup, disabled otherwise.         Option
-#define ROOF_AUTOCLOSE_SAFETY         OFF //    OFF, ON closes the roof automatically if an UNSAFE condition is detected.     Option
+#define ROOF_AUTOCLOSE_SAFETY          ON //    OFF, ON closes the roof automatically if an UNSAFE condition is detected.     Option
 
 #define ROOF_MOUNT_PARK_BEFORE_CLOSE   ON //    OFF, ON attempts to park the mount by a park relay or serial onstep.          Option
 #define ROOF_MOUNT_PARK_RELAY           1 //    OFF, n. Where n=1..18 (Relay#) momentarily engages this relay to park mount.  Option
-#define ROOF_MOUNT_PARK_TIMEOUT        30 //     30, n. Where n=20..480 (seconds) Maximum time to park mount before error.    Adjust
+#define ROOF_MOUNT_PARK_TIMEOUT        60 //     30, n. Where n=20..480 (seconds) Maximum time to park mount before error.    Adjust
 
 #define ROOF_MOTOR_OPEN_RELAY           6 //    OFF, n. Where n=1..18 (Relay#) engages this relay to open roof.               Option
 #define ROOF_MOTOR_CLOSE_RELAY          7 //    OFF, n. Where n=1..18 (Relay#) engages this relay to close roof.              Option

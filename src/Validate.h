@@ -32,6 +32,11 @@
   #error "Configuration (Config.h): CONNECT_FAIL_WATCHDOG ON requires WATCHDOG ON."
 #endif
 
+// Website colors setup
+#if COLORS_DARK_THEME != OFF && COLORS_DARK_THEME != ON
+  #error "Configuration (Config.h): COLORS_DARK_THEME must be either ON or OFF."
+#endif
+
 // Time setup
 #if TIME_ZONE<-12 || TIME_ZONE>14
   #error "Configuration (Config.h): TIME_ZONE must be a number between -12 and 13 (hours.)"
@@ -126,6 +131,10 @@
 
 #if WEATHER_WIND_SPD_THRESHOLD<0 || WEATHER_WIND_SPD_THRESHOLD>100
   #error "Configuration (Config.h): WEATHER_WIND_SPD_THRESHOLD must be a number between 0 and 100 (kph.)"
+#endif
+
+#if WEATHER_WIND_ACCUMULATE != OFF && (WEATHER_WIND_ACCUMULATE<1 || WEATHER_WIND_ACCUMULATE>20)
+  #error "Configuration (Config.h): WEATHER_WIND_ACCUMULATE must be OFF or a number between 1 and 20 (secs*(kph > thres))"
 #endif
 
 #if WEATHER_SENSOR_WIND_CUP != OFF && (WEATHER_SENSOR_WIND_CUP<1 || WEATHER_SENSOR_WIND_CUP>8)

@@ -167,11 +167,11 @@
       if (isnan(f)) {
         strcpy_P(temp, htmlStringInvalid);
       } else {
-//        #if DISPLAY_UNITS == IMPERIAL
+        #if DISPLAY_UNITS == IMPERIAL || DISPLAY_UNITS == BRITISH
           sprintF(temp, "%6.0f mph", f*0.621371);
-//        #else
-//          sprintF(temp, "%6.0f kph", f);
-//        #endif
+        #else
+          sprintF(temp, "%6.0f kph", f);
+        #endif
       }
     }
   #endif

@@ -33,8 +33,9 @@
 #define SERIAL_ONSTEP                 OFF //    OFF, Serial1, NETWORK_STATION, etc. specify serial interface to OnStep.       Option
 
 // DISPLAY -------------------------------------------------------------------------------------------------------------------------
-#define DISPLAY_LANGUAGE             L_en //   L_en, English. L_en, L_us (for IMPERIAL units) two letter country code.        Adjust
+#define DISPLAY_LANGUAGE             L_gb //   L_en, Eng. L_us (IMPERIAL units), L_gb (MIXED units), two letter country code. Adjust
 #define CAMERA_WEBPAGE                 "" //     "", To enable add string with web address to camera image display page.      Adjust
+#define COLORS_DARK_THEME              ON //    OFF, ON set OCS website colors to dark theme.                                 Option
 
 // WATCHDOG SETTINGS ---------------------------------------------------------------------------------------------------------------
 #define WATCHDOG                       ON //    OFF, ON resets OCS after 8 sec. if it hangs for (nearly) any reason.          Option
@@ -142,12 +143,13 @@
 #define WEATHER_HUMIDITY              OFF //    OFF, ON for measuring outside humidity.                                       Option
 
 #define WEATHER_WIND_SPD               ON //    OFF, ON for measuring wind speed.                                             Option
-#define WEATHER_WIND_SPD_THRESHOLD     32 //     20, n. Where n=0..100 (in kph) wind speed above this is considered UNSAFE.   Adjust
+#define WEATHER_WIND_SPD_THRESHOLD     25 //     20, n. Where n=0..100 (in kph) wind speed above this is considered UNSAFE.   Adjust
+#define WEATHER_WIND_ACCUMULATE        20 //    OFF, n. Where n=1..20 (X) extend UNSAFE duration by n secs*(kph > threshold)  Option
 
 #define WEATHER_RAIN                   ON //    OFF, ON to enable rain sensor, a "wet" condition is considered to be UNSAFE.  Option
 
 #define WEATHER_CLOUD_CVR              ON //    OFF, ON to enable the cloud sensor, above WEATHER_SAFE_THRESHOLD is UNSAFE.   Option
-#define WEATHER_SAFE_THRESHOLD         -9 //    -14, n. Where n=-25..0 (in Deg. C)                                            Adjust
+#define WEATHER_SAFE_THRESHOLD        -14 //    -14, n. Where n=-25..0 (in Deg. C)                                            Adjust
 #define WEATHER_VCLR_THRESHOLD        -19 //    -19, n. Where n=-25..0 (in Deg. C)                                            Adjust
 #define WEATHER_CLER_THRESHOLD        -17 //    -17, n. Where n=-25..0 (in Deg. C)                                            Adjust
 #define WEATHER_HAZE_THRESHOLD        -14 //    -14, n. Where n=-25..0 (in Deg. C)                                            Adjust
@@ -272,7 +274,7 @@
 
 #define AXIS1_SLEW_RATE_DESIRED         4 //    1.0, n, (degrees/second) Maximum speed depends on processor.                  Adjust
 
-#define AXIS1_STEPS_PER_DEGREE      280.0 //   60.0, n. Number of steps per degree for dome.                                  Adjust
+#define AXIS1_STEPS_PER_DEGREE     278.75 //   60.0, n. Number of steps per degree for dome.                                  Adjust
 #define AXIS1_REVERSE                 OFF //    OFF, ON Reverses movement direction, or reverse wiring instead to correct.    Option
 #define AXIS1_POWER_DOWN              OFF //    OFF, ON Powers off 30sec after movement stops or 10min after last<=1x guide.  Option
 

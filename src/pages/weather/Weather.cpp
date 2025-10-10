@@ -10,7 +10,7 @@
   void makeChartJs(const char chartId[], String chartName, int logColumn, int colWidth, int rangeMin, int rangeMax, int rangeStep, long hours);
 
   void weatherPage() {
-    char temp[256] = "";
+    char temp[384] = "";
     String a = www.arg("chart");
 
     // send the header
@@ -46,15 +46,15 @@
         // a negative column# means this is a temperature and needs conversion to degrees F
         makeChartJs("ambientT", "Outside Temperature F (last "+periodStr+")", -8, 5, -40, 120, 20, period);
       #else
-        makeChartJs("ambientT", "Outside Temperature C (last "+periodStr+")", 8, 5, -10, 40, 10, period);
+        makeChartJs("ambientT", "Outside Temperature C (last "+periodStr+")", 8, 5, -40, 50, 10, period);
       #endif
     #endif
     #if WEATHER_WIND_SPD == ON
-//      #if DISPLAY_UNITS == IMPERIAL
+      #if DISPLAY_UNITS == IMPERIAL || DISPLAY_UNITS == BRITISH
         makeChartJs("WS", "Wind Speed mph (last "+periodStr+")", -39, 5, 0, 50, 10, period);
-//      #else
-//        makeChartJs("WS", "Wind Speed kph (last "+periodStr+")", 39, 5, 0, 80, 10, period);
-//      #endif
+      #else
+        makeChartJs("WS", "Wind Speed kph (last "+periodStr+")", 39, 5, 0, 80, 10, period);
+      #endif
     #endif
     #if WEATHER_PRESSURE == ON
       #if DISPLAY_UNITS == IMPERIAL

@@ -373,7 +373,10 @@ void ServoMotor::poll() {
   if (enabled) feedback->poll();
 
   float velocity = velocityEstimate + control->out;
+  // My changes
+  // if (!enabled) velocity = 0.0F;
   if (!enabled || (labs(motorSteps - encoderCounts) < 279)) velocity = 0.0F;
+  // End my changes
 
   #ifdef ABSOLUTE_ENCODER_CALIBRATION
     if (axisNumber == 1) {
@@ -424,14 +427,22 @@ void ServoMotor::poll() {
       }
 
       // if above 90% power and we're moving away from the target something is seriously wrong, so shut it down
+      
+      // My changes
       //if (labs(encoderCounts - lastEncoderCounts) > lastTargetDistance && abs(velocityPercent) >= 90) {
-    if (labs(motorCounts - encoderCounts) > lastTargetDistance && abs(velocityPercent) >= 90) {
+      if (labs(motorCounts - encoderCounts) > lastTargetDistance && abs(velocityPercent) >= 90) {
+      // End my chnages
+
         DF("WRN:"); D(axisPrefix); DF("runaway detected!");
-        DLF(" > 90% power while moving away from the target!");
-        enable(false);
-        safetyShutdown = true;
-      }
-      lastTargetDistance = labs(motorCounts - encoderCounts);
+          DLF(" > 90% power while moving away from the target!");
+          enable(false);
+          safetyShutdown = true;
+        }
+
+        // My changes
+        // lastTargetDistance = labs(encoderCounts - lastEncoderCounts);
+        lastTargetDistance = labs(motorCounts - encoderCounts);
+        // End my changes
 
       // if we were below -33% and above 33% power in a one second period something is seriously wrong, so shut it down
       if (wasBelow33 && wasAbove33) {
@@ -449,7 +460,12 @@ void ServoMotor::poll() {
   }
 
   #if DEBUG != OFF && defined(DEBUG_SERVO) && DEBUG_SERVO != OFF
+
+    // My changes
+    // if (axisNumber == DEBUG_SERVO) {
     if ((axisNumber == DEBUG_SERVO) && (velocityPercent != 0.0)) {
+    // End my changes
+
       static uint16_t count = 0;
       count++;
       if (count % 10 == 0) {

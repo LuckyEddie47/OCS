@@ -218,7 +218,11 @@ CommandError Dome::park() {
   if (settings.park.state == PS_PARK_FAILED) return CE_PARK_FAILED;
 
   VLF("MSG: Dome, parking");
+
+  // My changes
   axis1.enable(true);
+  // End my changes
+  
   axis1.setBacklash(0.0F);
   axis1.setTargetCoordinatePark(settings.park.azimuth);
   CommandError e = axis1.autoGoto(AXIS1_SLEW_RATE_DESIRED);

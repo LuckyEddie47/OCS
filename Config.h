@@ -52,8 +52,8 @@
 #define TIME_LOCATION_SOURCE          NTP //    NTP, Network Time Protocol w/IP address settings below, or DS3231 (I2C),      Adjust
                                           //         SD3031 (I2C), DS3234 (SPI), TEENSY.
 #define TIME_NTP_IP         {129,6,15,28} // ...6,15,28}, time-a-g.nist.gov at 129,6,15,28 or 129,6,15,29, 129,6,15,30, etc.  Option
-#define TIME_ZONE                       1 //     -5, Time Zone (US Eastern Standard Time in this case.)                      <-Req'd
-#define TIME_DISPLAY                  STD //    STD, Display Standard Time, UT1 to display Universal Time.                    Adjust
+#define TIME_ZONE                       0 //     -5, Time Zone (US Eastern Standard Time in this case.)                      <-Req'd
+#define TIME_DISPLAY                  UT1 //    STD, Display Standard Time, UT1 to display Universal Time.                    Adjust
 
 // STATUS PANEL FEATURES -----------------------------------------------------------------------------------------------------------
 #define STAT                           ON //    OFF, ON to enable the OCS website status panel display.                       Option
@@ -143,8 +143,8 @@
 #define WEATHER_HUMIDITY              OFF //    OFF, ON for measuring outside humidity.                                       Option
 
 #define WEATHER_WIND_SPD               ON //    OFF, ON for measuring wind speed.                                             Option
-#define WEATHER_WIND_SPD_THRESHOLD     25 //     20, n. Where n=0..100 (in kph) wind speed above this is considered UNSAFE.   Adjust
-#define WEATHER_WIND_ACCUMULATE        20 //    OFF, n. Where n=1..20 (X) extend UNSAFE duration by n secs*(kph > threshold)  Option
+#define WEATHER_WIND_SPD_THRESHOLD     32 //     20, n. Where n=0..100 (in kph) wind speed above this is considered UNSAFE.   Adjust
+#define WEATHER_WIND_ACCUMULATE         5 //    OFF, n. Where n=1..20 (X) extend UNSAFE duration by n secs*(kph > threshold)  Option
 
 #define WEATHER_RAIN                   ON //    OFF, ON to enable rain sensor, a "wet" condition is considered to be UNSAFE.  Option
 
@@ -310,6 +310,7 @@
 #define SERVO_SAFETY_DISABLE
 #define AXIS2_STEP_PIN                OFF
 #define AXIS2_DIR_PIN                 OFF
+//#define AXIS1_HOME_DEFAULT            306.5
 
 #define AXIS2_DRIVER_MODEL            OFF //    OFF, Enter driver model to activate the (optional) dome Altitude axis.        Option
 #define AXIS2_DRIVER_MICROSTEPS       OFF //    OFF, n. Microstep mode when tracking.                                         Option

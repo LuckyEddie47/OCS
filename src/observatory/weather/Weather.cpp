@@ -69,6 +69,8 @@ void Weather::poll(void) {
 
     // Wind speed --------------------------------------------------------------
     float w = weatherSensor.windspeed();
+    windspeedInstant = w;
+    if (!isnan(w) && (isnan(windspeedPeak) || w > windspeedPeak)) windspeedPeak = w;
     if (isnan(wa))
       wa = w;
     else
@@ -177,7 +179,12 @@ void Weather::poll(void) {
           dtostrf2(h,5,1,-99.9,999.9,temp);   dataFile.print(" "); dataFile.print(temp); //32, 6 (humidity)
           dtostrf2(wa,5,1,-99.9,999.9,temp);  dataFile.print(" "); dataFile.print(temp); //38, 6 (short term average windspeed)
           dtostrf2(q,5,2,-9.99,99.99,temp);   dataFile.print(" "); dataFile.print(temp); //44, 6 (sky quality)
-          for (int i = 0; i < 29; i++) dataFile.print(" ");                              //  ,29
+          #if WEATHER_WIND_SPD == ON && WEATHER_WIND_PEAKS == ON
+            dtostrf2(windspeedPeak,5,1,-99.9,999.9,temp); dataFile.print(" "); dataFile.print(temp); //50, 6 (peak windspeed)
+            for (int i = 0; i < 23; i++) dataFile.print(" ");                            //  ,23
+          #else
+            for (int i = 0; i < 29; i++) dataFile.print(" ");                            //  ,29
+          #endif
           dataFile.print("\r\n");                                                        //  , 2
 
           #if DEBUG_SD == VERBOSE
@@ -210,6 +217,7 @@ void Weather::poll(void) {
       sa = ambientTemp;
       ss = skyTemp;
       sad = skyDiffTemp;
+      windspeedPeak = w;
     }
 
     #if WATCHDOG != OFF

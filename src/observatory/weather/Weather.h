@@ -22,6 +22,12 @@ class Weather {
 
     float getAvgSkyDiffTemp();
 
+    // gets unfiltered wind speed at last poll in kph (NAN if unavailable)
+    float getWindspeedInstant() { return windspeedInstant; }
+
+    // gets peak wind speed since last log write in kph (NAN if unavailable)
+    float getWindspeedPeak() { return windspeedPeak; }
+
     // gets cloud cover in %
     float cloudCover();
 
@@ -46,6 +52,8 @@ class Weather {
     float sad = NAN;
     float lad = NAN;
     float wa = NAN;
+    float windspeedInstant = NAN; // unfiltered reading at last poll (for future use)
+    float windspeedPeak = NAN;    // max raw reading since last log write
 
     const char *CloudDescription[10] =
     { "Invalid", "Clear", "Mostly-Clr", "Slight-Hze", "Ovrcst/Hze",

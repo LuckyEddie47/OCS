@@ -19,7 +19,7 @@
 // default provision for up to 16 sense inputs is allowed, to change use:
 // #define SENSE_MAX 30 (for example)
 #ifndef SENSE_MAX
-  #define SENSE_MAX 8
+  #define SENSE_MAX 12
 #endif
 
 // largest possible trigger value == 2^21

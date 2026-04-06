@@ -18,7 +18,7 @@
 // =================================================================================================================================
 // CONTROLLER ======================================================================================================================
 
-#define HOST_NAME                   "OCS" //  "OCS", This devices name up to 16 chars.                                        Adjust
+#define HOST_NAME            "Triangulum" //  "OCS", This devices name up to 16 chars.                                        Adjust
 
 // PINMAP --------------------------------------------------------------------------------------------------------------------------
 #define PINMAP                       OCS4 //    OFF, Choose from: LEGACY, OCS1, OCS2, OCS3, OCS4, OCS_ESP1, OCS_ESP2.        <-Req'd
@@ -34,7 +34,8 @@
 
 // DISPLAY -------------------------------------------------------------------------------------------------------------------------
 #define DISPLAY_LANGUAGE             L_gb //   L_en, Eng. L_us (IMPERIAL units), L_gb (MIXED units), two letter country code. Adjust
-#define CAMERA_WEBPAGE                 "" //     "", To enable add string with web address to camera image display page.      Adjust
+#define CAMERA_WEBPAGE               "http://192.168.7.215:8888/ObservatoryCam/" 
+                                          //     "", To enable add string with web address to camera image display page.      Adjust
 #define COLORS_DARK_THEME              ON //    OFF, ON set OCS website colors to dark theme.                                 Option
 
 // WATCHDOG SETTINGS ---------------------------------------------------------------------------------------------------------------
@@ -228,11 +229,11 @@
 #define ROOF_ACTUATE_SENSE            OFF //    OFF, n. Where n=1..8 (Sense#) for momentary switch to open or close roof.     Option
 #define ROOF_AUTOCLOSE_DAWN           OFF //    OFF, ON displays option to automatically close roof at dawn.                  Option
 #define ROOF_AUTOCLOSE_DAWN_DEFAULT   OFF //    OFF, ON enables AUTOCLOSE_DAWN option at startup, disabled otherwise.         Option
-#define ROOF_AUTOCLOSE_SAFETY          ON //    OFF, ON closes the roof automatically if an UNSAFE condition is detected.     Option
+#define ROOF_AUTOCLOSE_SAFETY         OFF //    OFF, ON closes the roof automatically if an UNSAFE condition is detected.     Option
 
 #define ROOF_MOUNT_PARK_BEFORE_CLOSE   ON //    OFF, ON attempts to park the mount by a park relay or serial onstep.          Option
 #define ROOF_MOUNT_PARK_RELAY           1 //    OFF, n. Where n=1..18 (Relay#) momentarily engages this relay to park mount.  Option
-#define ROOF_MOUNT_PARK_TIMEOUT        60 //     30, n. Where n=20..480 (seconds) Maximum time to park mount before error.    Adjust
+#define ROOF_MOUNT_PARK_TIMEOUT        90 //     30, n. Where n=20..480 (seconds) Maximum time to park mount before error.    Adjust
 
 #define ROOF_MOTOR_OPEN_RELAY           6 //    OFF, n. Where n=1..18 (Relay#) engages this relay to open roof.               Option
 #define ROOF_MOTOR_CLOSE_RELAY          7 //    OFF, n. Where n=1..18 (Relay#) engages this relay to close roof.              Option
@@ -281,7 +282,7 @@
 #define AXIS1_LIMIT_MIN              -359 //   -180, n. Where n= 0..-360 (degrees.) Minimum Azimuth.                          Adjust
 #define AXIS1_LIMIT_MAX               359 //    180, n. Where n= 0.. 360 (degrees.) Maximum Azimuth.                          Adjust
 
-#define AXIS1_SENSE_HOME              OFF //    OFF, HIGH or LOW enables & state clockwise home position, as seen from front. Option
+#define AXIS1_SENSE_HOME   HIGH|THLD(315) //    OFF, HIGH or LOW enables & state clockwise home position, as seen from front. Option
 #define AXIS1_SENSE_LIMIT_MIN         OFF //    OFF, HIGH or LOW state on limit sense switch stops movement.                  Option
 #define AXIS1_SENSE_LIMIT_MAX         OFF //    OFF, HIGH or LOW state on limit sense switch stops movement.                  Option
                                           //         Digital, optionally add: |HYST(n) Where n=0..1023 stability time in ms.
@@ -310,6 +311,8 @@
 #define SERVO_SAFETY_DISABLE
 #define AXIS2_STEP_PIN                OFF
 #define AXIS2_DIR_PIN                 OFF
+#define AXIS1_SENSE_HOME_PIN          ASENSE2_PIN
+#define AXIS1_SENSE_HOME_INIT         INPUT_PULLUP
 //#define AXIS1_HOME_DEFAULT            306.5
 
 #define AXIS2_DRIVER_MODEL            OFF //    OFF, Enter driver model to activate the (optional) dome Altitude axis.        Option

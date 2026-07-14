@@ -34,7 +34,7 @@
 
 // DISPLAY -------------------------------------------------------------------------------------------------------------------------
 #define DISPLAY_LANGUAGE             L_gb //   L_en, Eng. L_us (IMPERIAL units), L_gb (MIXED units), two letter country code. Adjust
-#define CAMERA_WEBPAGE               "http://192.168.7.215:8888/ObservatoryCam/" 
+#define CAMERA_WEBPAGE                 "" //"https://192.168.7.104/qvrsurveillance/share.cgi?ssid=2412acb89ffe4b0f8acf7b37485a73f0" 
                                           //     "", To enable add string with web address to camera image display page.      Adjust
 #define COLORS_DARK_THEME              ON //    OFF, ON set OCS website colors to dark theme.                                 Option
 
@@ -141,11 +141,12 @@
 #define WEATHER_NOMINAL_PRESSURE     1010 //   1010, n. Where n=500..1050 (in mb) site nominal pressure for Chart.            Adjust
 #define WEATHER_ALTITUDE               25 //    100, n. Where n=-86..5000 (meters) site altitude.                             Adjust
 
-#define WEATHER_HUMIDITY              OFF //    OFF, ON for measuring outside humidity.                                       Option
+#define WEATHER_HUMIDITY               ON //    OFF, ON for measuring outside humidity.                                       Option
 
 #define WEATHER_WIND_SPD               ON //    OFF, ON for measuring wind speed.                                             Option
 #define WEATHER_WIND_SPD_THRESHOLD     32 //     20, n. Where n=0..100 (in kph) wind speed above this is considered UNSAFE.   Adjust
 #define WEATHER_WIND_ACCUMULATE         5 //    OFF, n. Where n=1..20 (X) extend UNSAFE duration by n secs*(kph > threshold)  Option
+#define WEATHER_WIND_PEAKS             ON //    OFF, ON to display peak wind speeds on the wind speed chart.                  Option
 
 #define WEATHER_RAIN                   ON //    OFF, ON to enable rain sensor, a "wet" condition is considered to be UNSAFE.  Option
 
@@ -161,9 +162,9 @@
 #define WEATHER_SKY_QUAL              OFF //    OFF, ON for measuring sky quality (darkness in magnitudes per sq arc-sec.)    Option
 
 // WEATHER SENSORS ----------------------
-#define WEATHER_SENSOR_TPH_BME280     OFF //    OFF, 0x76 or 0x77 (I2C Address) to enable. Temperature, pressure, humidity.   Option
+#define WEATHER_SENSOR_TPH_BME280    0x76 //    OFF, 0x76 or 0x77 (I2C Address) to enable. Temperature, pressure, humidity.   Option
 
-#define WEATHER_SENSOR_TP_BMP280     0x77 //    OFF, 0x76 or 0x77 (I2C Address) to enable. Temperature, pressure.             Option
+#define WEATHER_SENSOR_TP_BMP280      OFF //    OFF, 0x76 or 0x77 (I2C Address) to enable. Temperature, pressure.             Option
 
 #define WEATHER_SENSOR_TP_BMP085      OFF //    OFF, 0x77 (I2C Address) to enable. Temperature, pressure. For BMP180 also.    Option
 
@@ -206,7 +207,7 @@
 #define HUMIDITY_WITH_ROOF_OPEN       OFF //    OFF, ON Dehumidify control whilst roof is open.                               Option
 
 // THERMOSTAT SENSORS -------------------
-#define THERMOSTAT_SENSOR_TPH_BME280 0x76 //    OFF, 0x76 or 0x77 (I2C Address) to enable. Temperature, pressure, humidity.   Option
+#define THERMOSTAT_SENSOR_TPH_BME280 0x77 //    OFF, 0x76 or 0x77 (I2C Address) to enable. Temperature, pressure, humidity.   Option
 
 #define THERMOSTAT_SENSOR_TP_BMP280   OFF //    OFF, 0x76 or 0x77 (I2C Address) to enable. Temperature, pressure.             Option
 
@@ -305,7 +306,7 @@
 #define SERVO_ANALOG_WRITE_FREQUENCY  100
 #define AXIS1_SERVO_VELOCITY_FACTOR   ((frequency > 0.0) && (frequency < 6143) ? 6143 : ((frequency < 0.0) && (frequency > -6143)) ? -6143 : 0.0)
 #define SERVO_ANALOG_WRITE_RANGE_MIN 0.95F // minimum fraction of the analog write range (0.0 to 1.0)
-#define DEFAULT_POWER_DOWN_TIME      5000 // motor power down time, in milliseconds
+#define DEFAULT_POWER_DOWN_TIME      5000  // motor power down time, in milliseconds
 #define AXIS1_TARGET_TOLERANCE        1.0
 #define AXIS1_NO_TRACKING
 #define SERVO_SAFETY_DISABLE
@@ -313,7 +314,7 @@
 #define AXIS2_DIR_PIN                 OFF
 #define AXIS1_SENSE_HOME_PIN          ASENSE2_PIN
 #define AXIS1_SENSE_HOME_INIT         INPUT_PULLUP
-//#define AXIS1_HOME_DEFAULT            306.5
+#define MLX_OFFSET                    -8  //    My MLX90614 setup has an offset (due to mirror?)
 
 #define AXIS2_DRIVER_MODEL            OFF //    OFF, Enter driver model to activate the (optional) dome Altitude axis.        Option
 #define AXIS2_DRIVER_MICROSTEPS       OFF //    OFF, n. Microstep mode when tracking.                                         Option

@@ -129,6 +129,10 @@
   #error "Configuration (Config.h): WEATHER_WIND_SPD, OCS temperature input, must OFF or ON."
 #endif
 
+#if WEATHER_WIND_PEAKS != OFF && WEATHER_WIND_PEAKS != ON
+  #error "Configuration (Config.h): WEATHER_WIND_PEAKS must be either ON or OFF."
+#endif
+
 #if WEATHER_WIND_SPD_THRESHOLD<0 || WEATHER_WIND_SPD_THRESHOLD>100
   #error "Configuration (Config.h): WEATHER_WIND_SPD_THRESHOLD must be a number between 0 and 100 (kph.)"
 #endif

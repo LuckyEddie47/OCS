@@ -8,11 +8,20 @@
 
   void WebServer::begin(long port, long timeToClose, bool autoReset) {
     if (webServer == NULL) {
-      ethernetManager.init();
-
       this->port = port;
       this->timeToClose = timeToClose;
       this->autoReset = autoReset;
+
+      #if SIMULATE == ON
+        // bench test, no Ethernet: serve requests arriving on the third USB serial port
+        SIM_WEB_SERIAL.begin(115200);
+        this->autoReset = false;
+        webServer = (EthernetServer*)1; // marks the server as started, never dereferenced
+        VLF("MSG: Webserver, SIMULATE serving HTTP over SerialUSB2");
+        return;
+      #endif
+
+      ethernetManager.init();
 
       webServer = new EthernetServer(port);
       webServer->begin();
@@ -23,7 +32,12 @@
   }
 
   void WebServer::handleClient() {
-    client = webServer->available();
+    #if SIMULATE == ON
+      if (webServer == NULL || !SIM_WEB_SERIAL.available()) return;
+      client.open();
+    #else
+      client = webServer->available();
+    #endif
 
     if (client) {
       WLF("--------------------------------------------------");

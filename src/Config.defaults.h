@@ -1,5 +1,10 @@
 #pragma once
 
+// bench test simulation (sensors, switches, roof/mount behaviour and HTTP over a second USB serial port), see src/plugins/sim/README.md
+#ifndef SIMULATE
+#define SIMULATE                       OFF
+#endif
+
 // host name for this microcontroller, by default used for the following if enabled/supported:
 // PRODUCT_DESCRIPTION    the user friendly name for this device, appears on websites etc.
 // HOST_NAME              the name ESP WiFi provides to any DHCP server (Ethernet doesn't support this)
@@ -115,6 +120,12 @@
 // for other default IP settings see the file:
 // src/lib/wifi/WifiManager.defaults.h
 
+#if SIMULATE == ON
+// bench test, there is no network so leave the network-only services off
+#undef MDNS_SERVER
+#define MDNS_SERVER                    OFF
+#endif
+
 #ifndef MDNS_SERVER
 #define MDNS_SERVER                    ON
 #endif
@@ -123,7 +134,9 @@
 #define MDNS_NAME                      HOST_NAME
 #endif
 
-#if ASCOM_ALPACA_SERVER == OFF
+#if SIMULATE == ON
+#define SERIAL_SERVER                  OFF
+#elif ASCOM_ALPACA_SERVER == OFF
 // optional Arduino Serial class work-alike IP channels 9996 to 9999 as a server (listens to clients)
 // OFF or STANDARD (port 9999), or PERSISTENT (ports 9996 to 9998), or BOTH
 #define SERIAL_SERVER                  BOTH

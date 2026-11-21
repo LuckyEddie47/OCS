@@ -84,9 +84,27 @@ class Sense {
     // call repeatedly to check inputs for changes
     void poll();
 
+    #if SIMULATE == ON
+      // bench test only: force this sense ON (1) or OFF (0), or -1 to go back to reading the pin
+      // \param handle      sense handle
+      void simulate(uint8_t handle, int8_t state);
+
+      // bench test only: returns the forced state (1 or 0), or -1 if the pin is being read
+      // \param handle      sense handle
+      int8_t simulated(uint8_t handle);
+    #endif
+
   private:
     uint8_t senseCount = 0;
     SenseInput *senseInput[SENSE_MAX];
+
+    #if SIMULATE == ON
+      int8_t simState[SENSE_MAX];
+      int8_t simLastChanged[SENSE_MAX];
+      unsigned long simChangedMs[SENSE_MAX];
+      bool simReady = false;
+      void simInit();
+    #endif
 };
 
 extern Sense sense;

@@ -7,6 +7,11 @@
   #error "Configuration (Config.h): Unrecognized PINMAP must OFF or set to a known pinmap."
 #endif
 
+// Bench test simulation, HTTP is bridged over the third USB serial port (SerialUSB2)
+#if SIMULATE == ON && !defined(USB_TRIPLE_SERIAL)
+  #error "Configuration (Config.h): SIMULATE requires a Teensy built with USB Type 'Triple Serial' (usb=serial3)."
+#endif
+
 // Ethernet setup
 #if RESPONSE_INTERVAL < 500 || RESPONSE_INTERVAL > 10000
   #error "Configuration (Config.h): RESPONSE_INTERVAL must be a number between 500 and 10000 (milliseconds.)"

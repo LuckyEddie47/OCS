@@ -43,7 +43,36 @@
   #define sendContentAndClear(x) sendContent(x); x = "";
 
   typedef void (* webFunction) ();
-  
+
+  #if SIMULATE == ON
+    // bench test only: carries HTTP over the third USB serial port instead of Ethernet (the second is
+    // command channel SERIAL_D), one request at a time; src/plugins/sim/ocs_sim.py turns this back into a local website
+    #define SIM_WEB_SERIAL SerialUSB2
+    #define SIM_WEB_END_OF_RESPONSE '\x04'
+
+    class SimClient {
+      public:
+        void open() { isOpen = true; }
+        explicit operator bool() { return isOpen; }
+        int getSocketNumber() { return 0; }
+        bool connected() { return isOpen; }
+        int available() { return SIM_WEB_SERIAL.available(); }
+        int read() { return SIM_WEB_SERIAL.read(); }
+        void print(const String &s) { SIM_WEB_SERIAL.print(s); }
+        void print(const char *s) { SIM_WEB_SERIAL.print(s); }
+        void flush() { SIM_WEB_SERIAL.flush(); }
+        void stop() {
+          // drop the rest of this request (the server stops reading after the GET line)
+          while (SIM_WEB_SERIAL.available()) SIM_WEB_SERIAL.read();
+          SIM_WEB_SERIAL.write(SIM_WEB_END_OF_RESPONSE);
+          SIM_WEB_SERIAL.flush();
+          isOpen = false;
+        }
+      private:
+        bool isOpen = false;
+    };
+  #endif
+
   class WebServer {
     public:
       void begin(long port = 80, long timeToClose = 50, bool autoReset = false);
@@ -81,7 +110,11 @@
       void sendContent(const char * s);
 
       EthernetServer *webServer = NULL;
-      EthernetClient client;
+      #if SIMULATE == ON
+        SimClient client;
+      #else
+        EthernetClient client;
+      #endif
     private:
       int  getHandler(String* line);
       void processGet(String* line);

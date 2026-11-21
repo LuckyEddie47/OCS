@@ -149,18 +149,54 @@ uint8_t Sense::add(int pin, int initState, int32_t trigger, bool force) {
 
 int Sense::isOn(uint8_t handle) {
   if (handle == 0 || handle > senseCount) return false;
+  #if SIMULATE == ON
+    if (simulated(handle) >= 0) return simState[handle - 1];
+  #endif
   return senseInput[handle - 1]->isOn();
 }
 
 long Sense::stableMillis(uint8_t handle) {
   if (handle == 0 || handle > senseCount) return false;
+  #if SIMULATE == ON
+    if (simulated(handle) >= 0) return (long)(millis() - simChangedMs[handle - 1]);
+  #endif
   return senseInput[handle - 1]->stableMillis();
 }
 
 int Sense::changed(uint8_t handle) {
   if (handle == 0 || handle > senseCount) return false;
+  #if SIMULATE == ON
+    if (simulated(handle) >= 0) {
+      bool result = simLastChanged[handle - 1] != simState[handle - 1];
+      simLastChanged[handle - 1] = simState[handle - 1];
+      return result;
+    }
+  #endif
   return senseInput[handle - 1]->changed();
 }
+
+#if SIMULATE == ON
+  void Sense::simInit() {
+    if (simReady) return;
+    for (int i = 0; i < SENSE_MAX; i++) { simState[i] = -1; simLastChanged[i] = -1; simChangedMs[i] = 0; }
+    simReady = true;
+  }
+
+  void Sense::simulate(uint8_t handle, int8_t state) {
+    simInit();
+    if (handle == 0 || handle > senseCount) return;
+    if (state > 1) state = 1;
+    if (state < -1) state = -1;
+    if (simState[handle - 1] != state) simChangedMs[handle - 1] = millis();
+    simState[handle - 1] = state;
+  }
+
+  int8_t Sense::simulated(uint8_t handle) {
+    simInit();
+    if (handle == 0 || handle > senseCount) return -1;
+    return simState[handle - 1];
+  }
+#endif
 
 void Sense::reverse(uint8_t handle, bool state) {
   if (handle == 0 || handle > senseCount) return;

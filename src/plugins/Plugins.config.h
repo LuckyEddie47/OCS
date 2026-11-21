@@ -16,9 +16,16 @@
 //#define PLUGIN1                    sample //    OFF, Specify the class instance (same as plugin directory name) to enable.    Option
 //#include "sample/Sample.h"                //         Specify the header file to include the class.
 
+#if SIMULATE == ON
+// bench test simulator, enabled by SIMULATE ON (see sim/README.md)
+#define PLUGIN1                       sim
+#include "sim/Sim.h"
+#define PLUGIN1_COMMAND_PROCESSING     ON
+#else
 #define PLUGIN1                       OFF //    OFF, Specify the class instance (same as plugin directory name) to enable.    Option
 //#include "plugin1/Name.h"               //         Specify the header file to include the class.
 #define PLUGIN1_COMMAND_PROCESSING    OFF //    OFF, Set to ON for plugins that allow command processing
+#endif
 
 #define PLUGIN2                       OFF //    OFF, Specify the class instance (same as plugin directory name) to enable.    Option
 //#include "plugin2/Name.h"               //         Specify the header file to include the class.

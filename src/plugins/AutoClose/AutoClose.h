@@ -22,8 +22,8 @@
 #include "../../observatory/roof/Roof.h"
 
 // User configuration for warning output
-#define AUTOCLOSE_OUTPUT_PIN    OFF // Set to pin number or OFF to disable
-#define AUTOCLOSE_OUTPUT_ON    HIGH // Set to HIGH or LOW for ON state
+#define AUTOCLOSE_OUTPUT_PIN    RELAY2_PIN // Set to pin number or OFF to disable
+#define AUTOCLOSE_OUTPUT_ON           HIGH // Set to HIGH or LOW for ON state
 
 class AutoClose {
 public:

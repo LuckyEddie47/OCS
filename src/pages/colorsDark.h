@@ -76,6 +76,9 @@
 #ifndef COLOR_CHART_THRESHOLD
 #define COLOR_CHART_THRESHOLD "rgba(10,180,10,1)"
 #endif
+#ifndef COLOR_CHART_WIND_PEAK
+#define COLOR_CHART_WIND_PEAK "rgba(255,160,0,1)"
+#endif
 
 #ifndef COLOR_THEME
 #define COLOR_THEME "dark"

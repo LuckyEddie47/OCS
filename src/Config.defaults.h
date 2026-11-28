@@ -137,6 +137,11 @@
 #define WEATHER_SENSOR_SAMPLE_PERIOD   5000                        // recommended <= 30 seconds
 #endif
 
+// show peak wind speeds on the wind speed chart (so older Config.h files without it still build)
+#ifndef WEATHER_WIND_PEAKS
+#define WEATHER_WIND_PEAKS             OFF
+#endif
+
 #if DEBUG_CONNECT_CHECK == ON
 #define CHECK_FAST                     3600.0
 #else

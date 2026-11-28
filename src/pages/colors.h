@@ -76,6 +76,9 @@
 #ifndef COLOR_CHART_THRESHOLD
 #define COLOR_CHART_THRESHOLD "rgba(10,50,10,1)"
 #endif
+#ifndef COLOR_CHART_WIND_PEAK
+#define COLOR_CHART_WIND_PEAK "rgba(192,96,0,1)"
+#endif
 
 #ifndef COLOR_THEME
 #define COLOR_THEME "normal"

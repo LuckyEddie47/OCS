@@ -91,17 +91,17 @@
 #define POWER_DEVICE1_MEMORY          OFF //    OFF, ON to enable memory (across power cycles) for this relay state.          Option
 #define POWER_DEVICE1_NAME        "HEATER"
 
-#define POWER_DEVICE2_RELAY            12 //    OFF, n. Where n=1..18 (Relay#) with _NAME below.                              Option
+#define POWER_DEVICE2_RELAY            11 //    OFF, n. Where n=1..18 (Relay#) with _NAME below.                              Option
 #define POWER_DEVICE2_MEMORY          OFF //    OFF, ON to enable memory (across power cycles) for this relay state.          Option
-#define POWER_DEVICE2_NAME  "DEHUMIDIFIER"
+#define POWER_DEVICE2_NAME          "VENT"
 
-#define POWER_DEVICE3_RELAY             8 //    OFF, n. Where n=1..18 (Relay#) with _NAME below.                              Option
+#define POWER_DEVICE3_RELAY            12 //    OFF, n. Where n=1..18 (Relay#) with _NAME below.                              Option
 #define POWER_DEVICE3_MEMORY          OFF //    OFF, ON to enable memory (across power cycles) for this relay state.          Option
-#define POWER_DEVICE3_NAME   "FLATS_PANEL"
+#define POWER_DEVICE3_NAME  "DEHUMIDIFIER"
 
-#define POWER_DEVICE4_RELAY           OFF //    OFF, n. Where n=1..18 (Relay#) with _NAME below.                              Option
+#define POWER_DEVICE4_RELAY             8 //    OFF, n. Where n=1..18 (Relay#) with _NAME below.                              Option
 #define POWER_DEVICE4_MEMORY          OFF //    OFF, ON to enable memory (across power cycles) for this relay state.          Option
-#define POWER_DEVICE4_NAME ""
+#define POWER_DEVICE4_NAME   "FLATS_PANEL"
 
 #define POWER_DEVICE5_RELAY           OFF //    OFF, n. Where n=1..18 (Relay#) with _NAME below.                              Option
 #define POWER_DEVICE5_MEMORY          OFF //    OFF, ON to enable memory (across power cycles) for this relay state.          Option
@@ -201,8 +201,8 @@
 #define THERMOSTAT_HUMIDITY            ON //    OFF, ON displays indoor humidity.                                             Option
 #define HEAT_RELAY                     10 //    OFF, n. Where n=1..18 (Relay#) for indoor heat.                               Option
 #define HEAT_WITH_ROOF_OPEN           OFF //    OFF, ON Heat control whilst roof is open.                                     Option
-#define COOL_RELAY                    OFF //    OFF, n. Where n=1..18 (Relay#) for cooling/venting.                           Option
-#define COOL_WITH_ROOF_OPEN           OFF //    OFF, ON Cool control whilst roof is open.                                     Option
+#define COOL_RELAY                     11 //    OFF, n. Where n=1..18 (Relay#) for cooling/venting.                           Option
+#define COOL_WITH_ROOF_OPEN            ON //    OFF, ON Cool control whilst roof is open.                                     Option
 #define HUMIDITY_RELAY                 12 //    OFF, n. Where n=1..18 (Relay#) for dehumidifying.                             Option
 #define HUMIDITY_WITH_ROOF_OPEN       OFF //    OFF, ON Dehumidify control whilst roof is open.                               Option
 

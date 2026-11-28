@@ -27,7 +27,7 @@ void AutoClose::updateWarningOutput() {
     }
 }
 
-bool AutoClose::isSafe() {
+void AutoClose::isSafe() {
     bool safe = true;
     int safetyDeviceCount = 0;
 
@@ -69,12 +69,12 @@ bool AutoClose::isSafe() {
     #endif
     if (safetyDeviceCount == 0) safe = false;
     lastIsSafe = safe;
-    return safe;
 }
 
 void AutoClose::poll() {
     // Duplicate Safety::poll() logic for autoclose, but only if ROOF_AUTOCLOSE_SAFETY == OFF
-    #if defined(ROOF_PRESENT) && (ROOF_AUTOCLOSE_SAFETY == OFF)
+//    #if defined(ROOF_PRESENT) && (ROOF_AUTOCLOSE_SAFETY == OFF)
+    isSafe();
     if (!overrideEnabled) {    
       if (roofAutoClose && isTimeValid()) {
             if (hour() == 8 && !roofAutoCloseInitiated) {
@@ -83,13 +83,13 @@ void AutoClose::poll() {
             }
             if (hour() != 8) roofAutoCloseInitiated = false;
         }
-      if (!isSafe()) {
+      if (!lastIsSafe) {
         // if the roof isn't closed, and motion is idle, close it
         if (!roof.isClosed() && !roof.isMoving()) roof.close();
       }
     }
-    #endif
     updateWarningOutput();
+//   #endif
 }
 
 bool AutoClose::command(char *reply, char *command, char *parameter, bool *supressFrame, bool *numericReply, CommandError *commandError) {

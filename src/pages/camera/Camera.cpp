@@ -28,10 +28,10 @@ void cameraPage() {
   www.sendContent(F("' title='Observatory Camera'>"));
   www.sendContent(F("</iframe>"));
 
-  www.sendContent(F("<script>\n"));
-  www.sendContent(F("window.setInterval(function() { reloadIFrame(); }, 3000);\n"));
-  www.sendContent(F("function reloadIFrame() { document.getElementById('obsImg').src += ''; }\n"));
-  www.sendContent(F("</script>\n"));
+//  www.sendContent(F("<script>\n"));
+//  www.sendContent(F("window.setInterval(function() { reloadIFrame(); }, 3000);\n"));
+//  www.sendContent(F("function reloadIFrame() { document.getElementById('obsImg').src += ''; }\n"));
+//  www.sendContent(F("</script>\n"));
 
   www.sendContent(F("</div></body></html>\r\n"));
   www.sendContent("");

@@ -117,6 +117,9 @@ char* WeatherSensor::temperatureName() { return _temperatureName; }
 // returns NAN if not implemented or if there's an error
 float WeatherSensor::skyTemperature() {
   if (!isnan(_skyTemperature) && (_skyTemperature < -60.0F || _skyTemperature > 60.0F)) _skyTemperature = NAN;
+  #if MLX_OFFSET
+    _skyTemperature += MLX_OFFSET;
+  #endif
   return _skyTemperature;
 }
 char* WeatherSensor::skyTemperatureName() { return _skyTemperatureName; }

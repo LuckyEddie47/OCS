@@ -45,9 +45,9 @@
     #if WEATHER_TEMPERATURE == ON
       #if DISPLAY_UNITS == IMPERIAL
         // a negative column# means this is a temperature and needs conversion to degrees F
-        makeChartJs("ambientT", "Outside Temperature F (last "+periodStr+")", -8, 5, -40, 120, 20, period);
+        makeChartJs("ambientT", "Outside Temperature F (last "+periodStr+")", -8, 5, -10, 110, 20, period);
       #else
-        makeChartJs("ambientT", "Outside Temperature C (last "+periodStr+")", 8, 5, -40, 50, 10, period);
+        makeChartJs("ambientT", "Outside Temperature C (last "+periodStr+")", 8, 5, -20, 40, 10, period);
       #endif
     #endif
     #if WEATHER_WIND_SPD == ON

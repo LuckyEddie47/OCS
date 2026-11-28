@@ -28,12 +28,11 @@
 class AutoClose {
 public:
     void init();
-    void loop();
-    bool isSafe();
+    void isSafe();
     float gustCount() { return wa; }
     void poll();
     bool roofAutoClose = false;
-    // Command interface
+
     bool command(char *reply, char *command, char *parameter, bool *supressFrame, bool *numericReply, CommandError *commandError);
 private:
     bool roofAutoCloseInitiated = false;
